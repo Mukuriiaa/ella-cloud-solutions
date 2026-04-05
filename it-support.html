@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IT Support Solutions - Ella Cloud Solutions Limited</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #050d1a;
+      --deep: #091428;
+      --blue: #0a6ef5;
+      --cyan: #00d4ff;
+      --muted: #7a90b0;
+      --white: #ffffff;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(0,212,255,0.15);
+    }
+ 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
+ 
+    /* NAVBAR */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 6%;
+      background: rgba(5,13,26,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+ 
+    .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .logo-icon {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: #fff;
+    }
+    .logo-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; line-height: 1.2; }
+    .logo-text span { color: var(--cyan); }
+    .logo-sub { font-size: 0.65rem; color: var(--muted); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
+ 
+    .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--muted); font-size: 0.875rem; font-weight: 500;
+      padding: 0.5rem 0.9rem; border-radius: 6px; transition: all 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+    .nav-links a.active { color: var(--cyan); }
+    .nav-cta { background: linear-gradient(135deg, var(--blue), var(--cyan)); color: #fff !important; padding: 0.55rem 1.2rem !important; border-radius: 8px !important; }
+ 
+    /* PAGE HERO */
+    .page-hero {
+      padding: 10rem 6% 5rem;
+      position: relative; overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 60% 50% at 30% 50%, rgba(10,110,245,0.15) 0%, transparent 60%), var(--navy);
+    }
+    .page-hero-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+    }
+    .page-hero-content { position: relative; z-index: 1; max-width: 700px; }
+    .page-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.25);
+      border-radius: 100px; padding: 0.4rem 1rem;
+      font-size: 0.8rem; color: var(--cyan); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1.5rem;
+    }
+    .page-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.25rem;
+    }
+    .page-title span {
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .page-desc { font-size: 1.05rem; line-height: 1.7; color: var(--muted); max-width: 560px; }
+ 
+    /* SECTIONS */
+    section { padding: 5rem 6%; }
+    .section-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--cyan); margin-bottom: 0.75rem; font-weight: 600; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+    .section-sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 520px; margin-bottom: 3rem; }
+ 
+    /* SERVICES GRID */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .service-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem; transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+    }
+    .service-card:hover { transform: translateY(-4px); border-color: rgba(0,212,255,0.35); background: rgba(255,255,255,0.06); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon { width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.25rem; }
+    .service-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.6rem; }
+    .service-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+ 
+    /* PROCESS */
+    .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .process-step {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem; text-align: center; transition: all 0.3s;
+    }
+    .process-step:hover { border-color: rgba(0,212,255,0.35); transform: translateY(-4px); }
+    .step-num {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
+      margin: 0 auto 1.25rem;
+    }
+    .step-title { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 0.5rem; }
+    .step-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+ 
+    /* SLA */
+    .sla-section { background: rgba(255,255,255,0.02); }
+    .sla-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+    .sla-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem; text-align: center;
+    }
+    .sla-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .sla-val {
+      font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 0.4rem;
+    }
+    .sla-label { font-size: 0.85rem; color: var(--muted); }
+ 
+    /* CTA */
+    .cta-section {
+      margin: 0 6% 6rem;
+      background: linear-gradient(135deg, rgba(10,110,245,0.2), rgba(0,212,255,0.1));
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 24px; padding: 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap; position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; top: -50%; right: -10%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(0,212,255,0.15), transparent 60%);
+      pointer-events: none;
+    }
+    .cta-title { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .cta-sub { color: var(--muted); font-size: 0.95rem; }
+ 
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: #fff; padding: 0.9rem 2rem; border-radius: 10px;
+      font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.2s;
+      box-shadow: 0 0 30px rgba(10,110,245,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(10,110,245,0.5); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: var(--white);
+      padding: 0.9rem 2rem; border-radius: 10px;
+      font-weight: 500; font-size: 0.95rem; text-decoration: none;
+      border: 1px solid var(--border); transition: all 0.2s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.05); border-color: rgba(0,212,255,0.4); }
+ 
+    /* FOOTER */
+    footer { background: var(--deep); border-top: 1px solid var(--border); padding: 4rem 6% 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand p { color: var(--muted); font-size: 0.875rem; line-height: 1.7; margin-top: 1rem; max-width: 280px; }
+    .footer-col h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 1.2rem; }
+    .footer-col a { display: block; color: var(--muted); text-decoration: none; font-size: 0.875rem; margin-bottom: 0.6rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--cyan); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.8rem; color: var(--muted); flex-wrap: wrap; gap: 1rem;
+    }
+    .social-links { display: flex; gap: 0.75rem; }
+    .social-links a {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); text-decoration: none; font-size: 0.85rem; transition: all 0.2s;
+    }
+    .social-links a:hover { background: rgba(0,212,255,0.1); color: var(--cyan); border-color: rgba(0,212,255,0.3); }
+ 
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      .cta-section { padding: 2.5rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+ 
+<!-- NAVBAR -->
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-icon">EC</div>
+    <div>
+      <div class="logo-text">Ella <span>Cloud</span></div>
+      <div class="logo-sub">Putting People & Technology Together</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="it-support.html" class="active">IT Support</a></li>
+    <li><a href="cloud-services.html">Cloud Services</a></li>
+    <li><a href="equipment.html">Equipment</a></li>
+    <li><a href="contact.html" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+ 
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="page-badge">IT Support Solutions</div>
+    <h1 class="page-title">Reliable IT Support<br/>for <span>Every Business</span></h1>
+    <p class="page-desc">We provide comprehensive IT consultancy, system maintenance, remote monitoring and on-site troubleshooting to keep your business running without interruption.</p>
+  </div>
+</div>
+ 
+<!-- SERVICES -->
+<section>
+  <div class="section-label">What We Offer</div>
+  <div class="section-title">Our IT Support Services</div>
+  <p class="section-sub">From day-to-day helpdesk support to full system design and implementation — we've got you covered.</p>
+ 
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(10,110,245,0.15);">🖥️</div>
+      <div class="service-name">Computer Repairs &amp; Maintenance</div>
+      <p class="service-desc">Assembly, upgrades, repairs and preventive maintenance for desktops, laptops and servers. We keep your hardware running at peak performance.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(0,212,255,0.1);">📞</div>
+      <div class="service-name">Helpdesk &amp; Remote Support</div>
+      <p class="service-desc">Phone, email and remote monitoring support solutions using state of the art tools. Fast response times to minimize disruption to your business.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(100,200,100,0.1);">💻</div>
+      <div class="service-name">Software Support</div>
+      <p class="service-desc">Assessment, supply, development and installation of off-the-shelf and custom-designed software. Comprehensive user support under contractual maintenance plans.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(255,180,0,0.1);">🔍</div>
+      <div class="service-name">Needs Analysis</div>
+      <p class="service-desc">We analyze your hardware and software requirements and provide objective independent reports with recommendations tailored to your specific situation.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(200,100,255,0.1);">⚙️</div>
+      <div class="service-name">Systems Design &amp; Installation</div>
+      <p class="service-desc">Custom computer systems design and installation with minimal disruption to your existing work programs. We run new systems in parallel for a smooth transition.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(255,80,80,0.1);">📋</div>
+      <div class="service-name">Service Level Agreements</div>
+      <p class="service-desc">Customized service contracts and maintenance plans tailored to your business needs. Including provision of standby equipment where necessary.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- PROCESS -->
+<section style="background: rgba(255,255,255,0.02);">
+  <div class="section-label">How We Work</div>
+  <div class="section-title">Our Support Process</div>
+  <p class="section-sub">A simple, transparent process to make sure your IT issues are resolved quickly and properly.</p>
+ 
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="step-num">1</div>
+      <div class="step-title">Contact Us</div>
+      <p class="step-desc">Reach out via phone, email or our online portal. Our team is ready to respond quickly.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">2</div>
+      <div class="step-title">Assessment</div>
+      <p class="step-desc">We assess the issue remotely or on-site and provide a clear diagnosis and recommendation.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">3</div>
+      <div class="step-title">Resolution</div>
+      <p class="step-desc">Our certified engineers resolve the issue efficiently using industry leading tools and methods.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">4</div>
+      <div class="step-title">Follow Up</div>
+      <p class="step-desc">We follow up to ensure everything is working perfectly and document the resolution for future reference.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- SLA STATS -->
+<section class="sla-section">
+  <div class="section-label">Our Commitment</div>
+  <div class="section-title">Service Level Standards</div>
+  <p class="section-sub">We hold ourselves to the highest standards of service delivery.</p>
+ 
+  <div class="sla-grid">
+    <div class="sla-card">
+      <div class="sla-icon">⚡</div>
+      <div class="sla-val">&lt;1hr</div>
+      <div class="sla-label">Average Response Time</div>
+    </div>
+    <div class="sla-card">
+      <div class="sla-icon">🕐</div>
+      <div class="sla-val">24/7</div>
+      <div class="sla-label">Monitoring Available</div>
+    </div>
+    <div class="sla-card">
+      <div class="sla-icon">✅</div>
+      <div class="sla-val">99.9%</div>
+      <div class="sla-label">Uptime Guarantee</div>
+    </div>
+    <div class="sla-card">
+      <div class="sla-icon">👨‍💻</div>
+      <div class="sla-val">25+</div>
+      <div class="sla-label">Certified Engineers</div>
+    </div>
+  </div>
+</section>
+ 
+<!-- CTA -->
+<div class="cta-section">
+  <div>
+    <div class="cta-title">Need IT Support Today?</div>
+    <p class="cta-sub">Get in touch with our team and we'll have you sorted in no time.</p>
+  </div>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+    <a href="contact.html" class="btn-primary">Contact Us Now</a>
+    <a href="about.html" class="btn-secondary">Learn About Us</a>
+  </div>
+</div>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">EC</div>
+        <div>
+          <div class="logo-text">Ella <span>Cloud</span></div>
+          <div class="logo-sub">Putting People & Technology Together</div>
+        </div>
+      </a>
+      <p>Ella Cloud Solutions Limited is a cutting edge ICT consulting firm putting people and technology together across Kenya and beyond.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="it-support.html">IT Support</a>
+      <a href="cloud-services.html">Cloud Services</a>
+      <a href="equipment.html">Equipment Sales</a>
+      <a href="#">Cybersecurity</a>
+      <a href="#">Managed IT</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="#">Our Team</a>
+      <a href="#">Careers</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="#">Nairobi, Kenya</a>
+      <a href="mailto:info@ellacloud.co.ke">info@ellacloud.co.ke</a>
+      <a href="tel:+254700000000">+254 700 000 000</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Ella Cloud Solutions Limited. All rights reserved.</span>
+    <div class="social-links">
+      <a href="#" title="LinkedIn">in</a>
+      <a href="#" title="Twitter">𝕏</a>
+      <a href="#" title="Facebook">f</a>
+    </div>
+  </div>
+</footer>
+ 
+</body>
+</html>
+

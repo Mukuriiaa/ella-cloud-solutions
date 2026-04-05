@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Equipment Sales & Service - Ella Cloud Solutions Limited</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #050d1a;
+      --deep: #091428;
+      --blue: #0a6ef5;
+      --cyan: #00d4ff;
+      --muted: #7a90b0;
+      --white: #ffffff;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(0,212,255,0.15);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
+
+    /* NAVBAR */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 6%;
+      background: rgba(5,13,26,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .logo-icon {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: #fff;
+    }
+    .logo-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; line-height: 1.2; }
+    .logo-text span { color: var(--cyan); }
+    .logo-sub { font-size: 0.65rem; color: var(--muted); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--muted); font-size: 0.875rem; font-weight: 500;
+      padding: 0.5rem 0.9rem; border-radius: 6px; transition: all 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+    .nav-links a.active { color: var(--cyan); }
+    .nav-cta { background: linear-gradient(135deg, var(--blue), var(--cyan)); color: #fff !important; padding: 0.55rem 1.2rem !important; border-radius: 8px !important; }
+
+    /* PAGE HERO */
+    .page-hero { padding: 10rem 6% 5rem; position: relative; overflow: hidden; }
+    .page-hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(10,110,245,0.15) 0%, transparent 60%), var(--navy);
+    }
+    .page-hero-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+    }
+    .page-hero-content { position: relative; z-index: 1; max-width: 700px; }
+    .page-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.25);
+      border-radius: 100px; padding: 0.4rem 1rem;
+      font-size: 0.8rem; color: var(--cyan); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1.5rem;
+    }
+    .page-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.25rem;
+    }
+    .page-title span {
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .page-desc { font-size: 1.05rem; line-height: 1.7; color: var(--muted); max-width: 560px; }
+
+    /* SECTIONS */
+    section { padding: 5rem 6%; }
+    .section-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--cyan); margin-bottom: 0.75rem; font-weight: 600; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+    .section-sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 520px; margin-bottom: 3rem; }
+
+    /* CATEGORIES */
+    .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .category-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem; transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .category-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+    }
+    .category-card:hover { transform: translateY(-4px); border-color: rgba(0,212,255,0.35); background: rgba(255,255,255,0.06); }
+    .category-card:hover::before { transform: scaleX(1); }
+    .category-icon { font-size: 2rem; margin-bottom: 1.25rem; }
+    .category-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.6rem; }
+    .category-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
+    .category-items { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .item-tag {
+      background: rgba(10,110,245,0.1); border: 1px solid rgba(10,110,245,0.2);
+      border-radius: 100px; padding: 0.25rem 0.75rem;
+      font-size: 0.75rem; color: var(--light);
+    }
+
+    /* BRANDS */
+    .brands-section { background: rgba(255,255,255,0.02); }
+    .brands-intro {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-bottom: 3rem;
+    }
+    .brands-text p { color: var(--muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem; }
+    .brands-text p span { color: var(--white); font-weight: 500; }
+    .authorized-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.25);
+      border-radius: 10px; padding: 0.75rem 1.25rem;
+      font-size: 0.85rem; color: var(--cyan); margin-top: 0.5rem;
+    }
+    .brands-grid { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .brand-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem 1.5rem;
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 0.95rem; color: var(--muted);
+      transition: all 0.2s; min-width: 120px; text-align: center;
+    }
+    .brand-card:hover { color: var(--cyan); border-color: rgba(0,212,255,0.35); background: rgba(0,212,255,0.06); }
+    .brand-card.authorized { border-color: rgba(0,212,255,0.3); color: var(--cyan); background: rgba(0,212,255,0.06); }
+
+    /* SERVICES */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .service-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1.5rem; background: var(--card);
+      border: 1px solid var(--border); border-radius: 12px; transition: all 0.3s;
+    }
+    .service-item:hover { border-color: rgba(0,212,255,0.35); background: rgba(255,255,255,0.06); }
+    .service-bullet {
+      width: 40px; height: 40px; flex-shrink: 0;
+      border-radius: 10px; background: rgba(10,110,245,0.15);
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+    }
+    .service-item-title { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.95rem; }
+    .service-item-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* WHY US */
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .why-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem; text-align: center; transition: all 0.3s;
+    }
+    .why-card:hover { transform: translateY(-4px); border-color: rgba(0,212,255,0.35); }
+    .why-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .why-title { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 0.5rem; }
+    .why-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+
+    /* CTA */
+    .cta-section {
+      margin: 0 6% 6rem;
+      background: linear-gradient(135deg, rgba(10,110,245,0.2), rgba(0,212,255,0.1));
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 24px; padding: 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap; position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; top: -50%; right: -10%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(0,212,255,0.15), transparent 60%);
+      pointer-events: none;
+    }
+    .cta-title { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .cta-sub { color: var(--muted); font-size: 0.95rem; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: #fff; padding: 0.9rem 2rem; border-radius: 10px;
+      font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.2s;
+      box-shadow: 0 0 30px rgba(10,110,245,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(10,110,245,0.5); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: var(--white);
+      padding: 0.9rem 2rem; border-radius: 10px;
+      font-weight: 500; font-size: 0.95rem; text-decoration: none;
+      border: 1px solid var(--border); transition: all 0.2s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.05); border-color: rgba(0,212,255,0.4); }
+
+    /* FOOTER */
+    footer { background: var(--deep); border-top: 1px solid var(--border); padding: 4rem 6% 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand p { color: var(--muted); font-size: 0.875rem; line-height: 1.7; margin-top: 1rem; max-width: 280px; }
+    .footer-col h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 1.2rem; }
+    .footer-col a { display: block; color: var(--muted); text-decoration: none; font-size: 0.875rem; margin-bottom: 0.6rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--cyan); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.8rem; color: var(--muted); flex-wrap: wrap; gap: 1rem;
+    }
+    .social-links { display: flex; gap: 0.75rem; }
+    .social-links a {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); text-decoration: none; font-size: 0.85rem; transition: all 0.2s;
+    }
+    .social-links a:hover { background: rgba(0,212,255,0.1); color: var(--cyan); border-color: rgba(0,212,255,0.3); }
+
+    @media (max-width: 900px) {
+      .brands-intro { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      .cta-section { padding: 2.5rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-icon">EC</div>
+    <div>
+      <div class="logo-text">Ella <span>Cloud</span></div>
+      <div class="logo-sub">Putting People & Technology Together</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="it-support.html">IT Support</a></li>
+    <li><a href="cloud-services.html">Cloud Services</a></li>
+    <li><a href="equipment.html" class="active">Equipment</a></li>
+    <li><a href="contact.html" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="page-badge">Equipment Sales & Service</div>
+    <h1 class="page-title">World Class <span>Technology</span><br/>Equipment</h1>
+    <p class="page-desc">We source and supply a broad range of high quality branded technology equipment — from laptops and servers to networking hardware and peripherals. Authorised resellers with full warranty support.</p>
+  </div>
+</div>
+
+<!-- PRODUCT CATEGORIES -->
+<section>
+  <div class="section-label">What We Supply</div>
+  <div class="section-title">Product Categories</div>
+  <p class="section-sub">We supply a comprehensive range of technology equipment for businesses of all sizes.</p>
+
+  <div class="categories-grid">
+    <div class="category-card">
+      <div class="category-icon">💻</div>
+      <div class="category-name">Computers & Laptops</div>
+      <p class="category-desc">Desktops, laptops, workstations and all-in-ones from the world's leading manufacturers.</p>
+      <div class="category-items">
+        <span class="item-tag">HP</span>
+        <span class="item-tag">Dell</span>
+        <span class="item-tag">Lenovo</span>
+        <span class="item-tag">Acer</span>
+        <span class="item-tag">Toshiba</span>
+      </div>
+    </div>
+    <div class="category-card">
+      <div class="category-icon">🖨️</div>
+      <div class="category-name">Printers & Peripherals</div>
+      <p class="category-desc">Printers, scanners, plotters, projectors and all peripheral devices for your office.</p>
+      <div class="category-items">
+        <span class="item-tag">Epson</span>
+        <span class="item-tag">HP</span>
+        <span class="item-tag">Sharp</span>
+        <span class="item-tag">Panasonic</span>
+        <span class="item-tag">Samsung</span>
+      </div>
+    </div>
+    <div class="category-card">
+      <div class="category-icon">🌐</div>
+      <div class="category-name">Networking Equipment</div>
+      <p class="category-desc">Routers, switches, access points and structured cabling for LAN and WAN setups.</p>
+      <div class="category-items">
+        <span class="item-tag">Cisco</span>
+        <span class="item-tag">Netgear</span>
+        <span class="item-tag">D-Link</span>
+        <span class="item-tag">TP-Link</span>
+      </div>
+    </div>
+    <div class="category-card">
+      <div class="category-icon">🖥️</div>
+      <div class="category-name">Servers & Storage</div>
+      <p class="category-desc">Enterprise servers, NAS storage solutions and data centre equipment for growing businesses.</p>
+      <div class="category-items">
+        <span class="item-tag">HP</span>
+        <span class="item-tag">Dell</span>
+        <span class="item-tag">IBM</span>
+        <span class="item-tag">Lenovo</span>
+      </div>
+    </div>
+    <div class="category-card">
+      <div class="category-icon">📹</div>
+      <div class="category-name">Video Conferencing</div>
+      <p class="category-desc">Professional video conferencing systems for modern hybrid workplaces and meeting rooms.</p>
+      <div class="category-items">
+        <span class="item-tag">Poly</span>
+        <span class="item-tag">Logitech</span>
+        <span class="item-tag">Lenovo</span>
+        <span class="item-tag">Amaya</span>
+      </div>
+    </div>
+    <div class="category-card">
+      <div class="category-icon">🔒</div>
+      <div class="category-name">Security Equipment</div>
+      <p class="category-desc">CCTV systems, biometric scanners, access control and security infrastructure.</p>
+      <div class="category-items">
+        <span class="item-tag">Biometric</span>
+        <span class="item-tag">CCTV</span>
+        <span class="item-tag">Access Control</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section class="brands-section">
+  <div class="brands-intro">
+    <div class="brands-text">
+      <div class="section-label">Our Partners</div>
+      <div class="section-title">Brands We Supply</div>
+      <p>Our recommendations are guided by the <span>global performance and acceptability</span> of each brand. We measure performance through reliability, durability, upgrade-ability and serviceability.</p>
+      <p>We are <span>authorised resellers</span> for Microsoft, HP, Dell and Lenovo — and partner with many other world class manufacturers to bring you the best products at competitive prices.</p>
+      <div class="authorized-badge">✅ Authorised Reseller — Microsoft, HP, Dell & Lenovo</div>
+    </div>
+    <div>
+      <div class="brands-grid">
+        <div class="brand-card authorized">Microsoft</div>
+        <div class="brand-card authorized">HP / Poly</div>
+        <div class="brand-card authorized">Dell</div>
+        <div class="brand-card authorized">Lenovo</div>
+        <div class="brand-card">Google</div>
+        <div class="brand-card">Oracle</div>
+        <div class="brand-card">Epson</div>
+        <div class="brand-card">IBM</div>
+        <div class="brand-card">Acer</div>
+        <div class="brand-card">Toshiba</div>
+        <div class="brand-card">Sharp</div>
+        <div class="brand-card">Panasonic</div>
+        <div class="brand-card">Philips</div>
+        <div class="brand-card">Samsung</div>
+        <div class="brand-card">Sony</div>
+        <div class="brand-card">Cisco</div>
+        <div class="brand-card">Polycom</div>
+        <div class="brand-card">Logitech</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section>
+  <div class="section-label">Beyond Supply</div>
+  <div class="section-title">Equipment Services</div>
+  <p class="section-sub">We don't just sell equipment — we support it throughout its entire lifecycle.</p>
+
+  <div class="services-grid">
+    <div class="service-item">
+      <div class="service-bullet">🔧</div>
+      <div>
+        <div class="service-item-title">Preventive Maintenance</div>
+        <div class="service-item-desc">Regular scheduled maintenance to keep your hardware performing at its best and prevent costly breakdowns.</div>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-bullet">⚙️</div>
+      <div>
+        <div class="service-item-title">Repairs & Upgrades</div>
+        <div class="service-item-desc">Computer assembly, upgrades and repairs carried out by our certified technicians using genuine parts.</div>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-bullet">📦</div>
+      <div>
+        <div class="service-item-title">Product Sourcing</div>
+        <div class="service-item-desc">Can't find what you need? We source specific products from our global network of manufacturers and distributors.</div>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-bullet">🚚</div>
+      <div>
+        <div class="service-item-title">Standby Equipment</div>
+        <div class="service-item-desc">We provide standby equipment where possible when repairs cannot be completed within the required time — minimizing your downtime.</div>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-bullet">📋</div>
+      <div>
+        <div class="service-item-title">Warranty Support</div>
+        <div class="service-item-desc">Full warranty support on all products supplied. We handle warranty claims and replacements on your behalf.</div>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-bullet">🏢</div>
+      <div>
+        <div class="service-item-title">On-Site Installation</div>
+        <div class="service-item-desc">Professional on-site installation and configuration of all equipment we supply — from single devices to full office setups.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section style="background: rgba(255,255,255,0.02);">
+  <div class="section-label">Why Choose Us</div>
+  <div class="section-title">The Ella Cloud Advantage</div>
+  <p class="section-sub">We go beyond just selling equipment — we're your long term technology partner.</p>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">✅</div>
+      <div class="why-title">Genuine Products</div>
+      <p class="why-desc">We only supply OEM and branded genuine products — no counterfeits. Every product comes with full manufacturer warranty.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💰</div>
+      <div class="why-title">Competitive Pricing</div>
+      <p class="why-desc">We conduct comprehensive competitive analysis to ensure you get the best value for your investment.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🌍</div>
+      <div class="why-title">Global Sourcing</div>
+      <p class="why-desc">Affiliated with partners around the world, we can source virtually any technology product you need.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔧</div>
+      <div class="why-title">After Sales Support</div>
+      <p class="why-desc">Our relationship doesn't end at the sale. We provide full after-sales support, maintenance and technical assistance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div>
+    <div class="cta-title">Looking for Equipment?</div>
+    <p class="cta-sub">Get in touch and we'll source the right technology for your business at the best price.</p>
+  </div>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+    <a href="contact.html" class="btn-primary">Request a Quote</a>
+    <a href="about.html" class="btn-secondary">Learn About Us</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">EC</div>
+        <div>
+          <div class="logo-text">Ella <span>Cloud</span></div>
+          <div class="logo-sub">Putting People & Technology Together</div>
+        </div>
+      </a>
+      <p>Ella Cloud Solutions Limited is a cutting edge ICT consulting firm putting people and technology together across Kenya and beyond.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="it-support.html">IT Support</a>
+      <a href="cloud-services.html">Cloud Services</a>
+      <a href="equipment.html">Equipment Sales</a>
+      <a href="#">Cybersecurity</a>
+      <a href="#">Managed IT</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="#">Our Team</a>
+      <a href="#">Careers</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="#">Nairobi, Kenya</a>
+      <a href="mailto:info@ellacloud.co.ke">info@ellacloud.co.ke</a>
+      <a href="tel:+254700000000">+254 700 000 000</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Ella Cloud Solutions Limited. All rights reserved.</span>
+    <div class="social-links">
+      <a href="#" title="LinkedIn">in</a>
+      <a href="#" title="Twitter">𝕏</a>
+      <a href="#" title="Facebook">f</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

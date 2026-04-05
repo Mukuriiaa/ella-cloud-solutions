@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - Ella Cloud Solutions Limited</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #050d1a;
+      --deep: #091428;
+      --blue: #0a6ef5;
+      --cyan: #00d4ff;
+      --light: #e8f0fe;
+      --muted: #7a90b0;
+      --white: #ffffff;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(0,212,255,0.15);
+    }
+ 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
+ 
+    /* NAVBAR */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 6%;
+      background: rgba(5,13,26,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+ 
+    .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+ 
+    .logo-icon {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 1.1rem; color: #fff;
+    }
+ 
+    .logo-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; line-height: 1.2; }
+    .logo-text span { color: var(--cyan); }
+    .logo-sub { font-size: 0.65rem; color: var(--muted); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
+ 
+    .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--muted); font-size: 0.875rem; font-weight: 500;
+      padding: 0.5rem 0.9rem; border-radius: 6px; transition: all 0.2s; letter-spacing: 0.02em;
+    }
+    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+    .nav-links a.active { color: var(--cyan); }
+    .nav-cta { background: linear-gradient(135deg, var(--blue), var(--cyan)); color: #fff !important; padding: 0.55rem 1.2rem !important; border-radius: 8px !important; }
+ 
+    /* PAGE HERO */
+    .page-hero {
+      padding: 10rem 6% 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+ 
+    .page-hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 30% 50%, rgba(10,110,245,0.15) 0%, transparent 60%),
+        var(--navy);
+    }
+ 
+    .page-hero-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+    }
+ 
+    .page-hero-content { position: relative; z-index: 1; max-width: 700px; }
+ 
+    .page-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(0,212,255,0.1);
+      border: 1px solid rgba(0,212,255,0.25);
+      border-radius: 100px;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem; color: var(--cyan);
+      letter-spacing: 0.05em; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+ 
+    .page-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800; line-height: 1.05;
+      letter-spacing: -0.02em; margin-bottom: 1.25rem;
+    }
+ 
+    .page-title span {
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+ 
+    .page-desc { font-size: 1.05rem; line-height: 1.7; color: var(--muted); max-width: 560px; }
+ 
+    /* SECTIONS */
+    section { padding: 5rem 6%; }
+ 
+    .section-label {
+      font-size: 0.78rem; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--cyan);
+      margin-bottom: 0.75rem; font-weight: 600;
+    }
+ 
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 800; line-height: 1.1; margin-bottom: 1rem;
+    }
+ 
+    .section-sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 520px; margin-bottom: 3rem; }
+ 
+    /* STORY SECTION */
+    .story-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+ 
+    .story-text p {
+      color: var(--muted); font-size: 0.95rem;
+      line-height: 1.8; margin-bottom: 1.25rem;
+    }
+ 
+    .story-text p span { color: var(--white); font-weight: 500; }
+ 
+    .story-visual {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 2.5rem;
+    }
+ 
+    .story-stat {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px; margin-bottom: 1rem;
+      border: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+    }
+ 
+    .story-stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.5rem; font-weight: 800;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+ 
+    .story-stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem; }
+ 
+    .story-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+ 
+    /* MISSION VISION */
+    .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+ 
+    .mv-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 2.5rem;
+      position: relative; overflow: hidden;
+      transition: all 0.3s;
+    }
+ 
+    .mv-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+    }
+ 
+    .mv-card:hover { transform: translateY(-4px); border-color: rgba(0,212,255,0.35); }
+ 
+    .mv-icon { font-size: 2.5rem; margin-bottom: 1.25rem; }
+    .mv-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 0.75rem; }
+    .mv-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+ 
+    /* SERVICES LIST */
+    .services-list {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+ 
+    .service-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1.25rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: all 0.3s;
+    }
+ 
+    .service-item:hover { border-color: rgba(0,212,255,0.35); background: rgba(255,255,255,0.06); }
+ 
+    .service-bullet {
+      width: 32px; height: 32px; flex-shrink: 0;
+      border-radius: 8px;
+      background: rgba(10,110,245,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+ 
+    .service-item-text { font-size: 0.875rem; color: var(--muted); line-height: 1.5; }
+    .service-item-text strong { color: var(--white); display: block; margin-bottom: 0.2rem; font-size: 0.9rem; }
+ 
+    /* BRANDS */
+    .brands-section { background: rgba(255,255,255,0.02); }
+ 
+    .brands-grid {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      align-items: center;
+    }
+ 
+    .brand-pill {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.85rem; font-weight: 600;
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+ 
+    .brand-pill:hover { color: var(--cyan); border-color: rgba(0,212,255,0.35); background: rgba(0,212,255,0.06); }
+ 
+    /* CLIENTS */
+    .clients-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+ 
+    .client-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem 1.5rem;
+      font-size: 0.875rem; color: var(--muted);
+      transition: all 0.2s;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+ 
+    .client-card:hover { color: var(--white); border-color: rgba(0,212,255,0.35); }
+    .client-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); flex-shrink: 0; }
+ 
+    /* CTA */
+    .cta-section {
+      margin: 0 6% 6rem;
+      background: linear-gradient(135deg, rgba(10,110,245,0.2), rgba(0,212,255,0.1));
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 24px; padding: 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+      position: relative; overflow: hidden;
+    }
+ 
+    .cta-section::before {
+      content: ''; position: absolute; top: -50%; right: -10%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(0,212,255,0.15), transparent 60%);
+      pointer-events: none;
+    }
+ 
+    .cta-title { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .cta-sub { color: var(--muted); font-size: 0.95rem; }
+ 
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: #fff; padding: 0.9rem 2rem; border-radius: 10px;
+      font-weight: 600; font-size: 0.95rem; text-decoration: none;
+      transition: all 0.2s; box-shadow: 0 0 30px rgba(10,110,245,0.35);
+    }
+ 
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(10,110,245,0.5); }
+ 
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: var(--white);
+      padding: 0.9rem 2rem; border-radius: 10px;
+      font-weight: 500; font-size: 0.95rem; text-decoration: none;
+      border: 1px solid var(--border); transition: all 0.2s;
+    }
+ 
+    .btn-secondary:hover { background: rgba(255,255,255,0.05); border-color: rgba(0,212,255,0.4); }
+ 
+    /* FOOTER */
+    footer {
+      background: var(--deep); border-top: 1px solid var(--border);
+      padding: 4rem 6% 2rem;
+    }
+ 
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem; margin-bottom: 3rem;
+    }
+ 
+    .footer-brand p { color: var(--muted); font-size: 0.875rem; line-height: 1.7; margin-top: 1rem; max-width: 280px; }
+ 
+    .footer-col h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 1.2rem; color: var(--white); }
+    .footer-col a { display: block; color: var(--muted); text-decoration: none; font-size: 0.875rem; margin-bottom: 0.6rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--cyan); }
+ 
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.8rem; color: var(--muted); flex-wrap: wrap; gap: 1rem;
+    }
+ 
+    .social-links { display: flex; gap: 0.75rem; }
+    .social-links a {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); text-decoration: none; font-size: 0.85rem; transition: all 0.2s;
+    }
+    .social-links a:hover { background: rgba(0,212,255,0.1); color: var(--cyan); border-color: rgba(0,212,255,0.3); }
+ 
+    @media (max-width: 900px) {
+      .story-grid, .mv-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+    }
+ 
+    @media (max-width: 600px) {
+      .cta-section { padding: 2.5rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+ 
+<!-- NAVBAR -->
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-icon">EC</div>
+    <div>
+      <div class="logo-text">Ella <span>Cloud</span></div>
+      <div class="logo-sub">Putting People & Technology Together</div>
+    </div>
+  </a>
+ 
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About Us</a></li>
+    <li><a href="it-support.html">IT Support</a></li>
+    <li><a href="cloud-services.html">Cloud Services</a></li>
+    <li><a href="equipment.html">Equipment</a></li>
+    <li><a href="contact.html" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+ 
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="page-badge">About Ella Cloud Solutions</div>
+    <h1 class="page-title">Putting People &amp;<br/><span>Technology</span> Together</h1>
+    <p class="page-desc">We are a cutting edge ICT consulting firm offering a broad range of technology services and products to businesses across Kenya and beyond.</p>
+  </div>
+</div>
+ 
+<!-- STORY -->
+<section>
+  <div class="story-grid">
+    <div class="story-text">
+      <div class="section-label">Our Story</div>
+      <div class="section-title">Who We Are</div>
+      <p>Ella Cloud Solutions Limited is a <span>cutting edge ICT consulting firm</span> offering services and sourcing products for a broad range of computer users in various sectors across Kenya and beyond.</p>
+      <p>We provide consultancy services for customized and general applications in <span>Computer Systems Design and Installation</span>, Communications and Networking, Systems Management and Information Planning and Telecommunications.</p>
+      <p>Our core team brings over <span>35 years of combined experience</span> in the IT industry, including private user consultancy and training. We are supported by qualified professional administrators with sound financial and business management experience at both domestic and international levels.</p>
+      <p>We are affiliated with various partners located around the world — leaders in their respective fields commanding a good market share and understanding of their respective product lines.</p>
+    </div>
+ 
+    <div class="story-visual">
+      <div class="story-stats-grid">
+        <div class="story-stat">
+          <div class="story-stat-num">35+</div>
+          <div class="story-stat-label">Years Experience</div>
+        </div>
+        <div class="story-stat">
+          <div class="story-stat-num">200+</div>
+          <div class="story-stat-label">Clients Served</div>
+        </div>
+        <div class="story-stat">
+          <div class="story-stat-num">10+</div>
+          <div class="story-stat-label">Countries Supported</div>
+        </div>
+        <div class="story-stat">
+          <div class="story-stat-num">99.9%</div>
+          <div class="story-stat-label">Uptime Guarantee</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- MISSION & VISION -->
+<section style="background: rgba(255,255,255,0.02);">
+  <div class="section-label">What Drives Us</div>
+  <div class="section-title">Mission &amp; Vision</div>
+  <p class="section-sub">Everything we do is guided by a clear purpose — to deliver technology that genuinely works for your business.</p>
+ 
+  <div class="mv-grid">
+    <div class="mv-card">
+      <div class="mv-icon">🎯</div>
+      <div class="mv-title">Our Mission</div>
+      <p class="mv-desc">To provide cutting edge ICT solutions that put people and technology together — delivering reliable, efficient and affordable technology services to businesses of all sizes across Kenya and beyond.</p>
+    </div>
+    <div class="mv-card">
+      <div class="mv-icon">🔭</div>
+      <div class="mv-title">Our Vision</div>
+      <p class="mv-desc">To be the most trusted technology partner for businesses across Africa — known for our expertise, reliability, and commitment to delivering world class IT solutions tailored to each client's unique needs.</p>
+    </div>
+    <div class="mv-card">
+      <div class="mv-icon">💡</div>
+      <div class="mv-title">Our Approach</div>
+      <p class="mv-desc">We ensure minimum disruption to existing work programs while implementing new systems. Our solutions run in parallel to existing systems for an agreed period before full transition — ensuring a smooth and confident changeover.</p>
+    </div>
+    <div class="mv-card">
+      <div class="mv-icon">🤝</div>
+      <div class="mv-title">Our Values</div>
+      <p class="mv-desc">Integrity, excellence and partnership are at the core of everything we do. We build long term relationships with our clients, providing honest recommendations and objective analysis to help them make the best technology decisions.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- AREAS OF COMPETENCE -->
+<section>
+  <div class="section-label">What We Do</div>
+  <div class="section-title">Areas of Competence</div>
+  <p class="section-sub">We cover the full spectrum of ICT needs — from software development to satellite internet services.</p>
+ 
+  <div class="services-list">
+    <div class="service-item">
+      <div class="service-bullet">💻</div>
+      <div class="service-item-text">
+        <strong>Software System Design</strong>
+        Custom-tailored software and app development with rapid prototyping and minimal disruption to existing systems.
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-bullet">🔍</div>
+      <div class="service-item-text">
+        <strong>Needs Analysis</strong>
+        We analyze hardware and software requirements and provide objective independent reports with recommendations tailored to your situation.
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-bullet">📦</div>
+      <div class="service-item-text">
+        <strong>Product Sourcing</strong>
+        We source high quality branded products guided by reliability, durability, upgrade-ability and competitive pricing.
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-bullet">🌐</div>
+      <div class="service-item-text">
+        <strong>Networking &amp; Communications</strong>
+        LAN/WAN design and installation, structured cabling, internet and email connectivity services.
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-bullet">🔒</div>
+      <div class="service-item-text">
+        <strong>Biometric &amp; CCTV Security</strong>
+        Turn-key security solutions for banks, hospitals, hotels, embassies and other security conscious organizations.
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-bullet">📡</div>
+      <div class="service-item-text">
+        <strong>Satellite Internet Services</strong>
+        High performance satellite internet across Kenya, Uganda, Tanzania, Ethiopia and the entire African continent.
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- BRANDS -->
+<section class="brands-section">
+  <div class="section-label">Trusted Partners</div>
+  <div class="section-title">Brands We Work With</div>
+  <p class="section-sub">We are authorised resellers for Microsoft, HP, Dell and Lenovo — and source products from many other world class brands.</p>
+ 
+  <div class="brands-grid">
+    <div class="brand-pill">Microsoft</div>
+    <div class="brand-pill">HP / Poly</div>
+    <div class="brand-pill">Dell</div>
+    <div class="brand-pill">Lenovo</div>
+    <div class="brand-pill">Google</div>
+    <div class="brand-pill">Oracle</div>
+    <div class="brand-pill">Epson</div>
+    <div class="brand-pill">IBM</div>
+    <div class="brand-pill">Acer</div>
+    <div class="brand-pill">Toshiba</div>
+    <div class="brand-pill">Sharp</div>
+    <div class="brand-pill">Panasonic</div>
+    <div class="brand-pill">Samsung</div>
+    <div class="brand-pill">Sony</div>
+    <div class="brand-pill">Cisco</div>
+    <div class="brand-pill">Polycom</div>
+    <div class="brand-pill">Philips</div>
+    <div class="brand-pill">Logitech</div>
+  </div>
+</section>
+ 
+<!-- CLIENTS -->
+<section>
+  <div class="section-label">Past &amp; Present</div>
+  <div class="section-title">Our Clients</div>
+  <p class="section-sub">We have had the privilege of serving a diverse range of reputable organizations across Kenya and internationally.</p>
+ 
+  <div class="clients-grid">
+    <div class="client-card"><span class="client-dot"></span>Chemicals &amp; Solvents E.A. Ltd</div>
+    <div class="client-card"><span class="client-dot"></span>CDC — US Centers for Disease Control</div>
+    <div class="client-card"><span class="client-dot"></span>Kenya (KEMRI)</div>
+    <div class="client-card"><span class="client-dot"></span>Chiromo Lane Medical Center</div>
+    <div class="client-card"><span class="client-dot"></span>Lake Turkana Wind Power Limited</div>
+    <div class="client-card"><span class="client-dot"></span>Royal Danish Embassy</div>
+    <div class="client-card"><span class="client-dot"></span>Embassy of Brazil</div>
+    <div class="client-card"><span class="client-dot"></span>Bangladesh High Commission</div>
+    <div class="client-card"><span class="client-dot"></span>Malaysian High Commission</div>
+    <div class="client-card"><span class="client-dot"></span>WorleyParsons Kenya Ltd</div>
+    <div class="client-card"><span class="client-dot"></span>IMCD Kenya Limited</div>
+    <div class="client-card"><span class="client-dot"></span>Zeelandia East Africa</div>
+  </div>
+</section>
+ 
+<!-- CTA -->
+<div class="cta-section">
+  <div>
+    <div class="cta-title">Ready to Work With Us?</div>
+    <p class="cta-sub">Get in touch today and let us find the right technology solution for your business.</p>
+  </div>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+    <a href="contact.html" class="btn-primary">Get in Touch</a>
+    <a href="index.html" class="btn-secondary">Back to Home</a>
+  </div>
+</div>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">EC</div>
+        <div>
+          <div class="logo-text">Ella <span>Cloud</span></div>
+          <div class="logo-sub">Putting People & Technology Together</div>
+        </div>
+      </a>
+      <p>Ella Cloud Solutions Limited is a cutting edge ICT consulting firm putting people and technology together across Kenya and beyond.</p>
+    </div>
+ 
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#">IT Support</a>
+      <a href="#">Cloud Services</a>
+      <a href="#">Equipment Sales</a>
+      <a href="#">Cybersecurity</a>
+      <a href="#">Managed IT</a>
+    </div>
+ 
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="#">Our Team</a>
+      <a href="#">Careers</a>
+      <a href="#">Blog</a>
+      <a href="contact.html">Contact</a>
+    </div>
+ 
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="#">Nairobi, Kenya</a>
+      <a href="mailto:info@ellacloud.co.ke">info@ellacloud.co.ke</a>
+      <a href="tel:+254700000000">+254 700 000 000</a>
+    </div>
+  </div>
+ 
+  <div class="footer-bottom">
+    <span>© 2026 Ella Cloud Solutions Limited. All rights reserved.</span>
+    <div class="social-links">
+      <a href="#" title="LinkedIn">in</a>
+      <a href="#" title="Twitter">𝕏</a>
+      <a href="#" title="Facebook">f</a>
+    </div>
+  </div>
+</footer>
+ 
+</body>
+</html>

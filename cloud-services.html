@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cloud Services - Ella Cloud Solutions Limited</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #050d1a;
+      --deep: #091428;
+      --blue: #0a6ef5;
+      --cyan: #00d4ff;
+      --muted: #7a90b0;
+      --white: #ffffff;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(0,212,255,0.15);
+    }
+ 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
+ 
+    /* NAVBAR */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 6%;
+      background: rgba(5,13,26,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .logo-icon {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: #fff;
+    }
+    .logo-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; line-height: 1.2; }
+    .logo-text span { color: var(--cyan); }
+    .logo-sub { font-size: 0.65rem; color: var(--muted); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--muted); font-size: 0.875rem; font-weight: 500;
+      padding: 0.5rem 0.9rem; border-radius: 6px; transition: all 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+    .nav-links a.active { color: var(--cyan); }
+    .nav-cta { background: linear-gradient(135deg, var(--blue), var(--cyan)); color: #fff !important; padding: 0.55rem 1.2rem !important; border-radius: 8px !important; }
+ 
+    /* PAGE HERO */
+    .page-hero { padding: 10rem 6% 5rem; position: relative; overflow: hidden; }
+    .page-hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 60% 50% at 70% 50%, rgba(0,212,255,0.12) 0%, transparent 60%), var(--navy);
+    }
+    .page-hero-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+    }
+    .page-hero-content { position: relative; z-index: 1; max-width: 700px; }
+    .page-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.25);
+      border-radius: 100px; padding: 0.4rem 1rem;
+      font-size: 0.8rem; color: var(--cyan); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1.5rem;
+    }
+    .page-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.25rem;
+    }
+    .page-title span {
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .page-desc { font-size: 1.05rem; line-height: 1.7; color: var(--muted); max-width: 560px; }
+ 
+    /* SECTIONS */
+    section { padding: 5rem 6%; }
+    .section-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--cyan); margin-bottom: 0.75rem; font-weight: 600; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+    .section-sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 520px; margin-bottom: 3rem; }
+ 
+    /* CLOUD SERVICES GRID */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .service-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem; transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+    }
+    .service-card:hover { transform: translateY(-4px); border-color: rgba(0,212,255,0.35); background: rgba(255,255,255,0.06); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon { width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.25rem; }
+    .service-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.6rem; }
+    .service-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+ 
+    /* SATELLITE SECTION */
+    .satellite-section { background: rgba(255,255,255,0.02); }
+    .satellite-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .satellite-text p { color: var(--muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1.25rem; }
+    .satellite-text p span { color: var(--white); font-weight: 500; }
+    .satellite-features { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+    .sat-feat {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; font-size: 0.875rem; color: var(--muted);
+      transition: all 0.2s;
+    }
+    .sat-feat:hover { border-color: rgba(0,212,255,0.35); color: var(--white); }
+    .sat-feat span { color: var(--cyan); font-size: 1.1rem; }
+ 
+    .satellite-visual {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 2.5rem;
+    }
+    .coverage-title { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 1.5rem; font-size: 1rem; }
+    .country-list { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .country-pill {
+      background: rgba(10,110,245,0.1); border: 1px solid rgba(10,110,245,0.2);
+      border-radius: 100px; padding: 0.4rem 1rem;
+      font-size: 0.8rem; color: var(--light);
+      transition: all 0.2s;
+    }
+    .country-pill:hover { background: rgba(0,212,255,0.1); border-color: rgba(0,212,255,0.3); color: var(--cyan); }
+    .coverage-note { margin-top: 1.5rem; padding: 1rem; background: rgba(0,212,255,0.06); border-radius: 10px; border: 1px solid rgba(0,212,255,0.15); font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+ 
+    /* WHY CLOUD */
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+    .why-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem; text-align: center; transition: all 0.3s;
+    }
+    .why-card:hover { transform: translateY(-4px); border-color: rgba(0,212,255,0.35); }
+    .why-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .why-title { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 0.5rem; }
+    .why-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+ 
+    /* CTA */
+    .cta-section {
+      margin: 0 6% 6rem;
+      background: linear-gradient(135deg, rgba(10,110,245,0.2), rgba(0,212,255,0.1));
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 24px; padding: 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap; position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; top: -50%; right: -10%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(0,212,255,0.15), transparent 60%);
+      pointer-events: none;
+    }
+    .cta-title { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .cta-sub { color: var(--muted); font-size: 0.95rem; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: #fff; padding: 0.9rem 2rem; border-radius: 10px;
+      font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.2s;
+      box-shadow: 0 0 30px rgba(10,110,245,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(10,110,245,0.5); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: var(--white);
+      padding: 0.9rem 2rem; border-radius: 10px;
+      font-weight: 500; font-size: 0.95rem; text-decoration: none;
+      border: 1px solid var(--border); transition: all 0.2s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.05); border-color: rgba(0,212,255,0.4); }
+ 
+    /* FOOTER */
+    footer { background: var(--deep); border-top: 1px solid var(--border); padding: 4rem 6% 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand p { color: var(--muted); font-size: 0.875rem; line-height: 1.7; margin-top: 1rem; max-width: 280px; }
+    .footer-col h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 1.2rem; }
+    .footer-col a { display: block; color: var(--muted); text-decoration: none; font-size: 0.875rem; margin-bottom: 0.6rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--cyan); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.8rem; color: var(--muted); flex-wrap: wrap; gap: 1rem;
+    }
+    .social-links { display: flex; gap: 0.75rem; }
+    .social-links a {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); text-decoration: none; font-size: 0.85rem; transition: all 0.2s;
+    }
+    .social-links a:hover { background: rgba(0,212,255,0.1); color: var(--cyan); border-color: rgba(0,212,255,0.3); }
+ 
+    @media (max-width: 900px) {
+      .satellite-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      .cta-section { padding: 2.5rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+ 
+<!-- NAVBAR -->
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-icon">EC</div>
+    <div>
+      <div class="logo-text">Ella <span>Cloud</span></div>
+      <div class="logo-sub">Putting People & Technology Together</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="it-support.html">IT Support</a></li>
+    <li><a href="cloud-services.html" class="active">Cloud Services</a></li>
+    <li><a href="equipment.html">Equipment</a></li>
+    <li><a href="contact.html" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+ 
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="page-badge">Cloud Services</div>
+    <h1 class="page-title">Scalable Cloud Solutions<br/>for <span>Modern Business</span></h1>
+    <p class="page-desc">From cloud hosting and migration to high performance satellite internet — we deliver reliable, secure and cost-effective cloud services across Kenya and the entire African continent.</p>
+  </div>
+</div>
+ 
+<!-- CLOUD SERVICES -->
+<section>
+  <div class="section-label">What We Offer</div>
+  <div class="section-title">Our Cloud Services</div>
+  <p class="section-sub">A full range of cloud solutions designed to help your business scale securely and efficiently.</p>
+ 
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(0,212,255,0.1);">☁️</div>
+      <div class="service-name">Cloud Hosting</div>
+      <p class="service-desc">Reliable, scalable cloud hosting solutions for businesses of all sizes. Keep your applications and data accessible 24/7 with guaranteed uptime.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(10,110,245,0.15);">🔄</div>
+      <div class="service-name">Cloud Migration</div>
+      <p class="service-desc">Seamlessly move your existing systems and data to the cloud with minimal disruption. We run new systems in parallel for a smooth and confident transition.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(100,200,100,0.1);">💾</div>
+      <div class="service-name">Cloud Storage &amp; Backup</div>
+      <p class="service-desc">Secure cloud storage and automated backup solutions to protect your business data. Never lose important information again.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(255,180,0,0.1);">🌐</div>
+      <div class="service-name">Web &amp; E-Commerce Solutions</div>
+      <p class="service-desc">Web and internet based e-commerce solutions and website development. We build and host your online presence from start to finish.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(200,100,255,0.1);">📧</div>
+      <div class="service-name">Internet &amp; Email Services</div>
+      <p class="service-desc">Reliable internet connectivity and professional email solutions for your business. Structured cabling, networking and internet provision services.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(255,80,80,0.1);">🔒</div>
+      <div class="service-name">Cloud Security</div>
+      <p class="service-desc">Data security and integrity solutions for your cloud environment. We protect your business from threats with enterprise grade security tools.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- SATELLITE INTERNET -->
+<section class="satellite-section">
+  <div class="satellite-grid">
+    <div class="satellite-text">
+      <div class="section-label">Satellite Services</div>
+      <div class="section-title">High Performance Satellite Internet</div>
+      <p>We offer a <span>stable and reliable internet connection by satellite</span> across Kenya, Uganda, Tanzania, Ethiopia and the entire African continent — perfect for businesses in areas with limited terrestrial connectivity.</p>
+      <p>We operate on the <span>NSS-12 satellite</span> using the latest DVB-S2 ACM technology — providing significantly higher data flow in both directions with added security and robustness even in adverse weather conditions.</p>
+ 
+      <div class="satellite-features">
+        <div class="sat-feat"><span>✅</span> DVB-S2 — New modulation technology for stronger satellite links</div>
+        <div class="sat-feat"><span>✅</span> ACM Rx/Tx — Adaptive Coding for higher data flow both ways</div>
+        <div class="sat-feat"><span>✅</span> Shared &amp; dedicated access options available</div>
+        <div class="sat-feat"><span>✅</span> 24/7 online monitoring and management portal</div>
+        <div class="sat-feat"><span>✅</span> Subscriptions with minimum guaranteed speeds (CIR)</div>
+        <div class="sat-feat"><span>✅</span> Volume based refill options available</div>
+      </div>
+    </div>
+ 
+    <div class="satellite-visual">
+      <div class="coverage-title">🌍 Coverage Area</div>
+      <div class="country-list">
+        <div class="country-pill">Kenya</div>
+        <div class="country-pill">Uganda</div>
+        <div class="country-pill">Tanzania</div>
+        <div class="country-pill">Ethiopia</div>
+        <div class="country-pill">Rwanda</div>
+        <div class="country-pill">South Sudan</div>
+        <div class="country-pill">Nigeria</div>
+        <div class="country-pill">Ghana</div>
+        <div class="country-pill">Zambia</div>
+        <div class="country-pill">Zimbabwe</div>
+        <div class="country-pill">Mozambique</div>
+        <div class="country-pill">+ All of Africa</div>
+      </div>
+      <div class="coverage-note">
+        📡 We cover the entire African continent as well as select regions in the Middle East and Europe. Customized solutions are available upon request.
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- WHY CLOUD -->
+<section>
+  <div class="section-label">Why Go Cloud</div>
+  <div class="section-title">Benefits of Cloud Services</div>
+  <p class="section-sub">Moving to the cloud isn't just a trend — it's a smarter, more cost-effective way to run your business.</p>
+ 
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">💰</div>
+      <div class="why-title">Cost Effective</div>
+      <p class="why-desc">Reduce hardware costs and only pay for what you use. No more expensive on-site servers to maintain.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📈</div>
+      <div class="why-title">Scalable</div>
+      <p class="why-desc">Easily scale your resources up or down as your business grows. Cloud services grow with you.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔒</div>
+      <div class="why-title">Secure</div>
+      <p class="why-desc">Enterprise grade security protecting your data with encryption, backups and threat monitoring.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🌍</div>
+      <div class="why-title">Accessible Anywhere</div>
+      <p class="why-desc">Access your data and applications from anywhere in the world — all you need is an internet connection.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- CTA -->
+<div class="cta-section">
+  <div>
+    <div class="cta-title">Ready to Move to the Cloud?</div>
+    <p class="cta-sub">Talk to our team today and get a free consultation on the best cloud solution for your business.</p>
+  </div>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+    <a href="contact.html" class="btn-primary">Get a Free Consultation</a>
+    <a href="about.html" class="btn-secondary">Learn About Us</a>
+  </div>
+</div>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">EC</div>
+        <div>
+          <div class="logo-text">Ella <span>Cloud</span></div>
+          <div class="logo-sub">Putting People & Technology Together</div>
+        </div>
+      </a>
+      <p>Ella Cloud Solutions Limited is a cutting edge ICT consulting firm putting people and technology together across Kenya and beyond.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="it-support.html">IT Support</a>
+      <a href="cloud-services.html">Cloud Services</a>
+      <a href="equipment.html">Equipment Sales</a>
+      <a href="#">Cybersecurity</a>
+      <a href="#">Managed IT</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="#">Our Team</a>
+      <a href="#">Careers</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="#">Nairobi, Kenya</a>
+      <a href="mailto:info@ellacloud.co.ke">info@ellacloud.co.ke</a>
+      <a href="tel:+254700000000">+254 700 000 000</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Ella Cloud Solutions Limited. All rights reserved.</span>
+    <div class="social-links">
+      <a href="#" title="LinkedIn">in</a>
+      <a href="#" title="Twitter">𝕏</a>
+      <a href="#" title="Facebook">f</a>
+    </div>
+  </div>
+</footer>
+ 
+</body>
+</html>
