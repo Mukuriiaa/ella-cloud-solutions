@@ -49,6 +49,8 @@
     .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.06); }
     .nav-links a.active { color: var(--cyan); }
     .nav-cta { background: linear-gradient(135deg, var(--blue), var(--cyan)); color: #fff !important; padding: 0.55rem 1.2rem !important; border-radius: 8px !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: 0.3s; }
 
     /* PAGE HERO */
     .page-hero { padding: 10rem 6% 5rem; position: relative; overflow: hidden; }
@@ -204,11 +206,24 @@
       .contact-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
       .nav-links { display: none; }
+      .hamburger { display: flex; }
     }
     @media (max-width: 600px) {
       .form-row { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
     }
+
+    .nav-links.open {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 70px; left: 0; right: 0;
+  background: rgba(5,13,26,0.98);
+  padding: 1.5rem 6%;
+  border-bottom: 1px solid var(--border);
+  gap: 0.5rem;
+}
+
   </style>
 </head>
 <body>
@@ -230,6 +245,10 @@
     <li><a href="equipment.html">Equipment</a></li>
     <li><a href="contact.html" class="active nav-cta">Get in Touch</a></li>
   </ul>
+
+  <div class="hamburger">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
 
 <!-- PAGE HERO -->
@@ -447,6 +466,16 @@
     document.getElementById('message').value = '';
 
     setTimeout(() => { successMsg.style.display = 'none'; }, 5000);
+  }
+</script>
+
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
   }
 </script>
 

@@ -535,6 +535,18 @@
       .cta-section { padding: 2.5rem; }
       .footer-grid { grid-template-columns: 1fr; }
     }
+    
+  .nav-links.open {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 70px; left: 0; right: 0;
+  background: rgba(5,13,26,0.98);
+  padding: 1.5rem 6%;
+  border-bottom: 1px solid var(--border);
+  gap: 0.5rem;
+}
+
   </style>
 </head>
 <body>
@@ -835,6 +847,16 @@
     </div>
   </div>
 </footer>
+
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+  }
+</script>
 
 </body>
 </html>
