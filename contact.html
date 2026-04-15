@@ -359,7 +359,7 @@
         <textarea placeholder="Tell us about your requirements or ask us anything..." id="message"></textarea>
       </div>
 
-      <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">Send Message →</button>
+      <button type="button" class="submit-btn" id="submitBtn" onclick="handleSubmit()">Send Message →</button>
       <p class="form-note">By submitting this form you agree to be contacted by Ella Cloud Solutions Limited regarding your enquiry.</p>
     </div>
   </div>
@@ -487,6 +487,8 @@
 
       successMsg.textContent = "Thank you! Your message has been sent. We'll be in touch soon.";
       successMsg.style.display = 'block';
+      successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      alert("Thank you! Your message has been sent.");
 
       document.getElementById('firstName').value = '';
       document.getElementById('lastName').value = '';
@@ -499,6 +501,8 @@
     } catch (error) {
       successMsg.textContent = `Unable to send message right now: ${error.message}`;
       successMsg.style.display = 'block';
+      successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      alert(`Unable to send message right now: ${error.message}`);
       setTimeout(() => { successMsg.style.display = 'none'; }, 7000);
     } finally {
       submitBtn.disabled = false;
