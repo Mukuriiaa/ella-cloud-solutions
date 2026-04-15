@@ -359,7 +359,7 @@
         <textarea placeholder="Tell us about your requirements or ask us anything..." id="message"></textarea>
       </div>
 
-      <button class="submit-btn" onclick="handleSubmit()">Send Message →</button>
+      <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">Send Message →</button>
       <p class="form-note">By submitting this form you agree to be contacted by Ella Cloud Solutions Limited regarding your enquiry.</p>
     </div>
   </div>
@@ -445,27 +445,65 @@
 </footer>
 
 <script>
-  function handleSubmit() {
-    const firstName = document.getElementById('firstName').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+  async function handleSubmit() {
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const service = document.getElementById('service').value;
+    const message = document.getElementById('message').value.trim();
+    const successMsg = document.getElementById('successMsg');
+    const submitBtn = document.getElementById('submitBtn');
 
     if (!firstName || !email || !message) {
       alert('Please fill in your name, email and message before submitting.');
       return;
     }
 
-    const successMsg = document.getElementById('successMsg');
-    successMsg.style.display = 'block';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
 
-    document.getElementById('firstName').value = '';
-    document.getElementById('lastName').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('phone').value = '';
-    document.getElementById('service').value = '';
-    document.getElementById('message').value = '';
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          phone,
+          service,
+          message
+        })
+      });
 
-    setTimeout(() => { successMsg.style.display = 'none'; }, 5000);
+      const result = await response.json();
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.error || 'Failed to submit your message.');
+      }
+
+      successMsg.textContent = "Thank you! Your message has been sent. We'll be in touch soon.";
+      successMsg.style.display = 'block';
+
+      document.getElementById('firstName').value = '';
+      document.getElementById('lastName').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('phone').value = '';
+      document.getElementById('service').value = '';
+      document.getElementById('message').value = '';
+
+      setTimeout(() => { successMsg.style.display = 'none'; }, 5000);
+    } catch (error) {
+      successMsg.textContent = `Unable to send message right now: ${error.message}`;
+      successMsg.style.display = 'block';
+      setTimeout(() => { successMsg.style.display = 'none'; }, 7000);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message →';
+    }
   }
 </script>
 
