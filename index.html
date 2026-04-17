@@ -4,18 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ella Cloud Solutions Limited</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --navy: #050d1a;
-      --deep: #091428;
+      --navy: #f5f7fb;
+      --deep: #eaf0f8;
       --blue: #0a6ef5;
       --cyan: #00d4ff;
       --light: #e8f0fe;
-      --muted: #7a90b0;
-      --white: #ffffff;
-      --card: rgba(255,255,255,0.04);
-      --border: rgba(0,212,255,0.15);
+      --muted: #5f6f86;
+      --white: #0f172a;
+      --card: rgba(255,255,255,0.88);
+      --border: rgba(10,110,245,0.18);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -23,18 +23,41 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       background: var(--navy);
       color: var(--white);
       overflow-x: hidden;
     }
 
+    /* ── TYPOGRAPHY ── */
+    h1, h2, h3, h4,
+    .logo-text,
+    .logo-sub,
+    .brand-splash-name,
+    .brand-splash-tag,
+    .page-brand-name,
+    .page-brand-sub,
+    .page-title,
+    .section-title,
+    .service-name,
+    .card-title,
+    .feat-title,
+    .ring-num,
+    .cta-title,
+    .stat-num,
+    .logo-text span,
+    .hero-brand-name,
+    .hero-logo-text,
+    .footer-col h4 {
+      font-family: 'Montserrat', sans-serif;
+    }
+
     /* ── NAVBAR ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center; justify-content: center;
       padding: 1.2rem 6%;
-      background: rgba(5,13,26,0.85);
+      background: rgba(255,255,255,0.92);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
@@ -45,25 +68,94 @@
     }
 
     .logo-icon {
-      width: 42px; height: 42px;
+      --logo-size: 62px;
+      width: var(--logo-size); height: var(--logo-size);
       background: linear-gradient(135deg, var(--blue), var(--cyan));
-      border-radius: 10px;
+      border-radius: calc(var(--logo-size) * 0.2);
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Syne', sans-serif;
-      font-weight: 800; font-size: 1.1rem;
-      color: #fff;
+      font-size: 0; position: relative; overflow: hidden;
+      box-shadow: 0 12px 26px rgba(10,110,245,0.22);
+    }
+
+    .logo-symbol {
+      width: 78%;
+      height: 78%;
+      display: block;
+    }
+
+    .logo-icon-splash {
+      --logo-size: 230px;
+      margin: 0 auto 1.4rem;
+      box-shadow: 0 26px 50px rgba(10,110,245,0.28);
+      animation: fadeUp 0.6s 0.08s ease both;
+    }
+
+    .brand-splash {
+      min-height: 100vh;
+      padding: 7.7rem 6% 3.5rem;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
       overflow: hidden;
     }
 
-    .logo-icon::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.2));
+    .brand-splash::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(0,212,255,0.2), transparent 42%),
+        radial-gradient(circle at 76% 72%, rgba(10,110,245,0.18), transparent 50%),
+        linear-gradient(180deg, #f8fbff, #eff5ff);
+      z-index: 0;
+    }
+
+    .brand-splash-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 860px;
+      animation: fadeUp 0.55s ease both;
+    }
+
+    .brand-splash-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.1rem, 6vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: #0f172a;
+      margin-bottom: 0.75rem;
+    }
+
+    .brand-splash-name span { color: var(--blue); }
+
+    .brand-splash-tag {
+      font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .scroll-cue {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.65rem 1.1rem;
+      border-radius: 999px;
+      background: rgba(10,110,245,0.08);
+      border: 1px solid rgba(10,110,245,0.2);
     }
 
     .logo-text {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 700; font-size: 1rem;
       line-height: 1.2;
     }
@@ -87,7 +179,11 @@
       letter-spacing: 0.02em;
     }
 
-    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+    .logo {
+      gap: 1rem;
+    }
+
+    .nav-links a:hover { color: var(--blue); background: rgba(10,110,245,0.08); }
     .nav-links a.active { color: var(--cyan); }
 
     .nav-cta {
@@ -99,14 +195,24 @@
 
     .nav-cta:hover { opacity: 0.9; background: linear-gradient(135deg, var(--blue), var(--cyan)) !important; }
 
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      position: absolute;
+      right: 6%;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 101;
+    }
     .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: 0.3s; }
 
     /* ── HERO ── */
     .hero {
-      min-height: 100vh;
+      min-height: 92vh;
       display: flex; align-items: center;
-      padding: 8rem 6% 5rem;
+      padding: 8rem 6% 6rem;
       position: relative;
       overflow: hidden;
     }
@@ -128,7 +234,7 @@
       mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
     }
 
-    .hero-content { position: relative; z-index: 1; max-width: 680px; }
+    .hero-content { position: relative; z-index: 1; max-width: 760px; }
 
     .hero-badge {
       display: inline-flex; align-items: center; gap: 0.5rem;
@@ -152,7 +258,7 @@
     }
 
     h1 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: clamp(2.8rem, 6vw, 4.5rem);
       font-weight: 800;
       line-height: 1.05;
@@ -172,7 +278,7 @@
       font-size: 1.1rem;
       line-height: 1.7;
       color: var(--muted);
-      max-width: 520px;
+      max-width: 600px;
       margin-bottom: 2.5rem;
       animation: fadeUp 0.6s 0.2s ease both;
     }
@@ -210,7 +316,7 @@
       transition: all 0.2s;
     }
 
-    .btn-secondary:hover { background: rgba(255,255,255,0.05); border-color: rgba(0,212,255,0.4); }
+    .btn-secondary:hover { background: rgba(10,110,245,0.08); border-color: rgba(10,110,245,0.25); }
 
     .hero-stats {
       display: flex; gap: 3rem; margin-top: 4rem;
@@ -218,7 +324,7 @@
     }
 
     .stat-num {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 2rem; font-weight: 800;
       color: var(--white);
     }
@@ -245,6 +351,255 @@
       border-radius: 20px;
       padding: 2rem;
       backdrop-filter: blur(10px);
+      box-shadow: 0 16px 44px rgba(15, 23, 42, 0.08);
+    }
+
+    /* ── LOGO OPTIONS ── */
+    .logo-options-section {
+      background: linear-gradient(180deg, rgba(255,255,255,0.45), rgba(255,255,255,0));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo-options-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(230px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .logo-option-card {
+      background: rgba(255,255,255,0.96);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.45rem;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .logo-option-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(10,110,245,0.32);
+      box-shadow: 0 18px 32px rgba(15, 23, 42, 0.1);
+    }
+
+    .logo-mark-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 130px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #f3f7ff, #f8fdff 45%, #edf7ff);
+      border: 1px solid rgba(10,110,245,0.14);
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-mark-wrap::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(10,110,245,0.12), transparent 66%);
+      top: -95px;
+      right: -75px;
+    }
+
+    .mark-base {
+      width: 74px;
+      height: 74px;
+      position: relative;
+    }
+
+    .mark-cloud-node {
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0a6ef5, #00d4ff);
+    }
+
+    .mark-cloud-node::before {
+      content: "";
+      position: absolute;
+      width: 34px;
+      height: 16px;
+      left: 50%;
+      top: 34%;
+      transform: translate(-50%, -50%);
+      border: 2px solid #fff;
+      border-radius: 12px;
+    }
+
+    .mark-cloud-node::after {
+      content: "";
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #fff;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%);
+      box-shadow: -14px -6px 0 #fff, 14px -6px 0 #fff;
+    }
+
+    .mark-shield-hex {
+      clip-path: polygon(50% 0%, 92% 20%, 82% 79%, 50% 100%, 18% 79%, 8% 20%);
+      background: linear-gradient(135deg, #1f45ff, #00d4ff);
+    }
+
+    .mark-shield-hex::before {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 15px;
+      left: 50%;
+      top: 42%;
+      transform: translate(-50%, -50%);
+      border: 2px solid #fff;
+      border-radius: 11px;
+    }
+
+    .mark-shield-hex::after {
+      content: "";
+      position: absolute;
+      width: 26px;
+      height: 2px;
+      background: #fff;
+      left: 50%;
+      bottom: 19px;
+      transform: translateX(-50%);
+      box-shadow: 0 -8px 0 #fff;
+    }
+
+    .mark-signal-wave {
+      border-radius: 18px;
+      background: linear-gradient(135deg, #0b1230, #1d4ed8);
+    }
+
+    .mark-signal-wave::before {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 12px;
+      left: 17px;
+      bottom: 13px;
+      background: #fff;
+      box-shadow: 11px -7px 0 #fff, 22px -14px 0 #fff, 33px -21px 0 #fff;
+      border-radius: 3px;
+    }
+
+    .mark-signal-wave::after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 14px;
+      left: 50%;
+      top: 23px;
+      transform: translateX(-50%);
+      border: 2px solid #00d4ff;
+      border-radius: 10px;
+    }
+
+    .mark-fusion-orbit {
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 35%, #00d4ff, #0a6ef5);
+    }
+
+    .mark-fusion-orbit::before {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 22px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(-18deg);
+      border: 2px solid rgba(255,255,255,0.9);
+      border-radius: 50%;
+    }
+
+    .mark-fusion-orbit::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      border-radius: 50%;
+      left: 52px;
+      top: 27px;
+      box-shadow: -31px 22px 0 rgba(255,255,255,0.9);
+    }
+
+    .mark-data-lattice {
+      border-radius: 14px;
+      background: linear-gradient(130deg, #0f172a, #0a6ef5);
+    }
+
+    .mark-data-lattice::before {
+      content: "";
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border: 2px solid rgba(255,255,255,0.95);
+      border-radius: 8px;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.22);
+    }
+
+    .mark-data-lattice::after {
+      content: "";
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #fff;
+      left: 18px;
+      top: 18px;
+      box-shadow: 38px 0 0 #fff, 0 38px 0 #fff, 38px 38px 0 #fff;
+    }
+
+    .mark-secure-wave {
+      border-radius: 16px;
+      background: linear-gradient(140deg, #312e81, #06b6d4);
+    }
+
+    .mark-secure-wave::before {
+      content: "";
+      position: absolute;
+      width: 40px;
+      height: 20px;
+      left: 50%;
+      top: 29px;
+      transform: translateX(-50%);
+      border: 2px solid rgba(255,255,255,0.95);
+      border-radius: 13px;
+    }
+
+    .mark-secure-wave::after {
+      content: "";
+      position: absolute;
+      width: 42px;
+      height: 10px;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      border-top: 2px solid #fff;
+      border-radius: 50%;
+      box-shadow: 0 -7px 0 rgba(255,255,255,0.65);
+    }
+
+    .logo-option-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .logo-option-text {
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.55;
     }
 
     .card-header {
@@ -259,7 +614,7 @@
       font-size: 1.3rem;
     }
 
-    .card-title { font-family: 'Syne', sans-serif; font-weight: 700; }
+    .card-title { font-family: 'Poppins', sans-serif; font-weight: 700; }
     .card-sub { font-size: 0.75rem; color: var(--muted); }
 
     .metric-row {
@@ -277,7 +632,7 @@
     .metric-val { font-size: 0.85rem; font-weight: 600; color: var(--cyan); min-width: 36px; text-align: right; }
 
     /* ── SERVICES ── */
-    section { padding: 6rem 6%; }
+    section { padding: 7rem 6%; }
 
     .section-label {
       font-size: 0.78rem;
@@ -289,7 +644,7 @@
     }
 
     .section-title {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: clamp(2rem, 4vw, 2.8rem);
       font-weight: 800;
       line-height: 1.1;
@@ -318,6 +673,7 @@
       transition: all 0.3s;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
     }
 
     .service-card::before {
@@ -328,7 +684,7 @@
       transition: transform 0.3s;
     }
 
-    .service-card:hover { transform: translateY(-4px); border-color: rgba(0,212,255,0.35); background: rgba(255,255,255,0.06); }
+    .service-card:hover { transform: translateY(-4px); border-color: rgba(0,212,255,0.35); background: rgba(15,23,42,0.06); }
     .service-card:hover::before { transform: scaleX(1); }
 
     .service-icon {
@@ -340,7 +696,7 @@
     }
 
     .service-name {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 700; font-size: 1.05rem;
       margin-bottom: 0.6rem;
     }
@@ -386,7 +742,7 @@
       font-size: 1.2rem;
     }
 
-    .feat-title { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 0.3rem; }
+    .feat-title { font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 0.3rem; }
     .feat-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
 
     .why-visual {
@@ -394,6 +750,7 @@
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 2.5rem;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
     }
 
     .uptime-ring {
@@ -412,7 +769,7 @@
       align-items: center; justify-content: center;
     }
 
-    .ring-num { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; }
+    .ring-num { font-family: 'Poppins', sans-serif; font-size: 1.8rem; font-weight: 800; }
     .ring-sub { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.06em; }
 
     .info-rows { display: flex; flex-direction: column; gap: 1rem; }
@@ -452,7 +809,7 @@
       pointer-events: none;
     }
 
-    .cta-title { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .cta-title { font-family: 'Poppins', sans-serif; font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
     .cta-sub { color: var(--muted); font-size: 0.95rem; }
 
     /* ── FOOTER ── */
@@ -472,7 +829,7 @@
     .footer-brand p { color: var(--muted); font-size: 0.875rem; line-height: 1.7; margin-top: 1rem; max-width: 280px; }
 
     .footer-col h4 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 700; font-size: 0.9rem;
       margin-bottom: 1.2rem;
       color: var(--white);
@@ -525,15 +882,21 @@
     @media (max-width: 900px) {
       .hero-visual { display: none; }
       .why-grid { grid-template-columns: 1fr; }
+      .logo-options-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
+      .brand-splash { min-height: 88vh; padding-top: 7rem; }
+      .logo-icon-splash { --logo-size: 170px; }
     }
 
     @media (max-width: 600px) {
       .hero-stats { gap: 1.5rem; }
       .cta-section { padding: 2.5rem; }
       .footer-grid { grid-template-columns: 1fr; }
+      .logo-icon { --logo-size: 54px; }
+      .logo-icon-splash { --logo-size: 138px; }
+      .brand-splash-tag { font-size: 0.76rem; }
     }
     
   .nav-links.open {
@@ -541,7 +904,8 @@
   flex-direction: column;
   position: absolute;
   top: 70px; left: 0; right: 0;
-  background: rgba(5,13,26,0.98);
+  background: rgba(255,255,255,0.98);
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
   padding: 1.5rem 6%;
   border-bottom: 1px solid var(--border);
   gap: 0.5rem;
@@ -553,14 +917,6 @@
 
 <!-- NAVBAR -->
 <nav>
-  <a href="#" class="logo">
-    <div class="logo-icon">EC</div>
-    <div>
-      <div class="logo-text">Ella <span>Cloud</span></div>
-      <div class="logo-sub">Putting People & Technology Together</div>
-    </div>
-  </a>
-
   <ul class="nav-links">
     <li><a href="#" class="active">Home</a></li>
     <li><a href="about.html">About Us</a></li>
@@ -575,8 +931,31 @@
   </div>
 </nav>
 
+<!-- BRAND SPLASH -->
+<section class="brand-splash" aria-label="Brand introduction">
+  <div class="brand-splash-inner">
+    <div class="logo-icon logo-icon-splash" aria-hidden="true">
+      <svg class="logo-symbol" viewBox="0 0 120 120" role="presentation">
+        <rect x="30" y="76" width="12" height="18" rx="3" fill="#bfefff"/>
+        <rect x="46" y="66" width="12" height="28" rx="3" fill="#8edfff"/>
+        <rect x="62" y="55" width="12" height="39" rx="3" fill="#58cbff"/>
+        <rect x="78" y="44" width="12" height="50" rx="3" fill="#23b4ff"/>
+        <g fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="44" cy="35" r="11"/>
+          <circle cx="60" cy="30" r="13"/>
+          <circle cx="76" cy="35" r="11"/>
+          <path d="M33 45h54"/>
+        </g>
+      </svg>
+    </div>
+    <div class="brand-splash-name">Ella <span>Cloud</span></div>
+    <div class="brand-splash-tag">Putting People &amp; Technology Together</div>
+    <a href="#main-hero" class="scroll-cue">Scroll to explore ↓</a>
+  </div>
+</section>
+
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="main-hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
 
@@ -803,7 +1182,20 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <a href="#" class="logo">
-        <div class="logo-icon">EC</div>
+        <div class="logo-icon" aria-hidden="true">
+          <svg class="logo-symbol" viewBox="0 0 120 120" role="presentation">
+            <rect x="30" y="76" width="12" height="18" rx="3" fill="#bfefff"/>
+            <rect x="46" y="66" width="12" height="28" rx="3" fill="#8edfff"/>
+            <rect x="62" y="55" width="12" height="39" rx="3" fill="#58cbff"/>
+            <rect x="78" y="44" width="12" height="50" rx="3" fill="#23b4ff"/>
+            <g fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="44" cy="35" r="11"/>
+              <circle cx="60" cy="30" r="13"/>
+              <circle cx="76" cy="35" r="11"/>
+              <path d="M33 45h54"/>
+            </g>
+          </svg>
+        </div>
         <div>
           <div class="logo-text">Ella <span>Cloud</span></div>
           <div class="logo-sub">Solutions Limited</div>

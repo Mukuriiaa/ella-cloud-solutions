@@ -55,6 +55,33 @@ Server starts on `http://localhost:3000` by default.
 
 The app will create the `contact_messages` table automatically on startup.
 
+## Railway Deployment
+
+### Deploy the backend
+
+1. Create a new Railway project.
+2. Connect your GitHub repository.
+3. Add a Railway PostgreSQL database service to the project.
+4. Copy the Railway database connection string into the backend environment as `DATABASE_URL`.
+5. Set `PGSSL=true` if Railway requires SSL for your database connection.
+6. Deploy the Node service using the `start` script from `package.json`.
+
+### Point the contact form to the live backend
+
+If the frontend is deployed separately from the backend, set the API base URL in `contact.html` using either:
+
+- the `<meta name="api-base-url" content="https://your-railway-app.up.railway.app" />` tag, or
+- a global `window.API_BASE_URL = 'https://your-railway-app.up.railway.app';`
+
+If the frontend is served by the same Railway Node app, you can leave the API base URL empty and the form will use the relative `/api/contact` path.
+
+### Live verification
+
+1. Open the live frontend page.
+2. Submit the contact form.
+3. Check the Railway PostgreSQL table `contact_messages`.
+4. Confirm the row appears with the submitted data.
+
 ## API Endpoints
 
 - `GET /api/health` - checks API and DB connectivity

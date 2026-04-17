@@ -4,29 +4,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Equipment Sales & Service - Ella Cloud Solutions Limited</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --navy: #050d1a;
-      --deep: #091428;
+      --navy: #f5f7fb;
+      --deep: #eaf0f8;
       --blue: #0a6ef5;
       --cyan: #00d4ff;
-      --muted: #7a90b0;
-      --white: #ffffff;
-      --card: rgba(255,255,255,0.04);
-      --border: rgba(0,212,255,0.15);
+      --muted: #5f6f86;
+      --white: #0f172a;
+      --card: rgba(255,255,255,0.88);
+      --border: rgba(10,110,245,0.18);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
+
+    /* TYPOGRAPHY */
+    h1, h2, h3, h4,
+    .logo-text,
+    .logo-sub,
+    .page-title,
+    .page-brand-name,
+    .page-brand-sub,
+    .section-title,
+    .section-label,
+    .category-name,
+    .service-item-title,
+    .why-title,
+    .cta-title,
+    .footer-col h4 {
+      font-family: 'Montserrat', sans-serif;
+    }
 
     /* NAVBAR */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center; justify-content: center;
       padding: 1.2rem 6%;
-      background: rgba(5,13,26,0.85);
+      background: rgba(255,255,255,0.92);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
@@ -36,9 +53,32 @@
       background: linear-gradient(135deg, var(--blue), var(--cyan));
       border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: #fff;
+      font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.1rem; color: transparent; font-size: 0; position: relative; overflow: hidden;
     }
-    .logo-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; line-height: 1.2; }
+    .logo-icon::before {
+      content: "";
+      position: absolute;
+      width: 18px; height: 10px;
+      left: 50%; top: 49%;
+      transform: translate(-50%, -55%);
+      border: 2px solid #fff;
+      border-top-left-radius: 8px; border-top-right-radius: 8px;
+      border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;
+      background: rgba(255,255,255,0.1);
+    }
+
+    .logo-icon::after {
+      content: "";
+      position: absolute;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: #fff;
+      left: 50%; bottom: 8px;
+      transform: translateX(-50%);
+      box-shadow: -8px 0 0 #fff, 8px 0 0 #fff;
+    }
+
+    .logo-text { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1rem; line-height: 1.2; }
     .logo-text span { color: var(--cyan); }
     .logo-sub { font-size: 0.65rem; color: var(--muted); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
     .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
@@ -46,10 +86,20 @@
       text-decoration: none; color: var(--muted); font-size: 0.875rem; font-weight: 500;
       padding: 0.5rem 0.9rem; border-radius: 6px; transition: all 0.2s;
     }
-    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+    .nav-links a:hover { color: var(--blue); background: rgba(10,110,245,0.08); }
     .nav-links a.active { color: var(--cyan); }
     .nav-cta { background: linear-gradient(135deg, var(--blue), var(--cyan)); color: #fff !important; padding: 0.55rem 1.2rem !important; border-radius: 8px !important; }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      position: absolute;
+      right: 6%;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 101;
+    }
     .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: 0.3s; }
 
     /* PAGE HERO */
@@ -72,7 +122,7 @@
       font-size: 0.8rem; color: var(--cyan); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1.5rem;
     }
     .page-title {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: clamp(2.5rem, 5vw, 4rem);
       font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.25rem;
     }
@@ -82,10 +132,52 @@
     }
     .page-desc { font-size: 1.05rem; line-height: 1.7; color: var(--muted); max-width: 560px; }
 
+    .page-brand-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.95rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .page-brand-mark {
+      width: 82px;
+      height: 82px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      box-shadow: 0 14px 30px rgba(10,110,245,0.22);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .page-brand-symbol {
+      width: 78%;
+      height: 78%;
+      display: block;
+    }
+
+    .page-brand-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.45rem, 2.6vw, 1.95rem);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      line-height: 1.05;
+      margin-bottom: 0.25rem;
+    }
+
+    .page-brand-name span { color: var(--blue); }
+
+    .page-brand-sub {
+      font-size: 0.74rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
     /* SECTIONS */
-    section { padding: 5rem 6%; }
+    section { padding: 6.5rem 6%; }
     .section-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--cyan); margin-bottom: 0.75rem; font-weight: 600; }
-    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+    .section-title { font-family: 'Poppins', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
     .section-sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 520px; margin-bottom: 3rem; }
 
     /* CATEGORIES */
@@ -100,10 +192,10 @@
       background: linear-gradient(90deg, var(--blue), var(--cyan));
       transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
     }
-    .category-card:hover { transform: translateY(-4px); border-color: rgba(0,212,255,0.35); background: rgba(255,255,255,0.06); }
+    .category-card:hover { transform: translateY(-4px); border-color: rgba(0,212,255,0.35); background: rgba(15,23,42,0.06); }
     .category-card:hover::before { transform: scaleX(1); }
     .category-icon { font-size: 2rem; margin-bottom: 1.25rem; }
-    .category-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.6rem; }
+    .category-name { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.6rem; }
     .category-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
     .category-items { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .item-tag {
@@ -129,7 +221,7 @@
     .brand-card {
       background: var(--card); border: 1px solid var(--border);
       border-radius: 12px; padding: 1rem 1.5rem;
-      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-family: 'Poppins', sans-serif; font-weight: 700;
       font-size: 0.95rem; color: var(--muted);
       transition: all 0.2s; min-width: 120px; text-align: center;
     }
@@ -143,13 +235,13 @@
       padding: 1.5rem; background: var(--card);
       border: 1px solid var(--border); border-radius: 12px; transition: all 0.3s;
     }
-    .service-item:hover { border-color: rgba(0,212,255,0.35); background: rgba(255,255,255,0.06); }
+    .service-item:hover { border-color: rgba(0,212,255,0.35); background: rgba(15,23,42,0.06); }
     .service-bullet {
       width: 40px; height: 40px; flex-shrink: 0;
       border-radius: 10px; background: rgba(10,110,245,0.15);
       display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
     }
-    .service-item-title { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.95rem; }
+    .service-item-title { font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 0.3rem; font-size: 0.95rem; }
     .service-item-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
 
     /* WHY US */
@@ -160,7 +252,7 @@
     }
     .why-card:hover { transform: translateY(-4px); border-color: rgba(0,212,255,0.35); }
     .why-icon { font-size: 2rem; margin-bottom: 1rem; }
-    .why-title { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 0.5rem; }
+    .why-title { font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 0.5rem; }
     .why-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
 
     /* CTA */
@@ -178,7 +270,7 @@
       background: radial-gradient(circle, rgba(0,212,255,0.15), transparent 60%);
       pointer-events: none;
     }
-    .cta-title { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .cta-title { font-family: 'Poppins', sans-serif; font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
     .cta-sub { color: var(--muted); font-size: 0.95rem; }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 0.5rem;
@@ -195,13 +287,13 @@
       font-weight: 500; font-size: 0.95rem; text-decoration: none;
       border: 1px solid var(--border); transition: all 0.2s;
     }
-    .btn-secondary:hover { background: rgba(255,255,255,0.05); border-color: rgba(0,212,255,0.4); }
+    .btn-secondary:hover { background: rgba(10,110,245,0.08); border-color: rgba(10,110,245,0.25); }
 
     /* FOOTER */
     footer { background: var(--deep); border-top: 1px solid var(--border); padding: 4rem 6% 2rem; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
     .footer-brand p { color: var(--muted); font-size: 0.875rem; line-height: 1.7; margin-top: 1rem; max-width: 280px; }
-    .footer-col h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 1.2rem; }
+    .footer-col h4 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 1.2rem; }
     .footer-col a { display: block; color: var(--muted); text-decoration: none; font-size: 0.875rem; margin-bottom: 0.6rem; transition: color 0.2s; }
     .footer-col a:hover { color: var(--cyan); }
     .footer-bottom {
@@ -221,6 +313,9 @@
     @media (max-width: 900px) {
       .brands-intro { grid-template-columns: 1fr; gap: 2rem; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
+      .page-brand-lockup { gap: 0.75rem; }
+      .page-brand-mark { width: 66px; height: 66px; border-radius: 13px; }
+      .page-brand-sub { font-size: 0.66rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
     }
@@ -234,7 +329,8 @@
   flex-direction: column;
   position: absolute;
   top: 70px; left: 0; right: 0;
-  background: rgba(5,13,26,0.98);
+  background: rgba(255,255,255,0.98);
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
   padding: 1.5rem 6%;
   border-bottom: 1px solid var(--border);
   gap: 0.5rem;
@@ -246,13 +342,6 @@
 
 <!-- NAVBAR -->
 <nav>
-  <a href="index.html" class="logo">
-    <div class="logo-icon">EC</div>
-    <div>
-      <div class="logo-text">Ella <span>Cloud</span></div>
-      <div class="logo-sub">Putting People & Technology Together</div>
-    </div>
-  </a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About Us</a></li>
@@ -272,6 +361,26 @@
   <div class="page-hero-bg"></div>
   <div class="page-hero-grid"></div>
   <div class="page-hero-content">
+    <div class="page-brand-lockup" aria-label="Ella Cloud brand">
+      <div class="page-brand-mark" aria-hidden="true">
+        <svg class="page-brand-symbol" viewBox="0 0 120 120" role="presentation">
+          <rect x="30" y="76" width="12" height="18" rx="3" fill="#bfefff"/>
+          <rect x="46" y="66" width="12" height="28" rx="3" fill="#8edfff"/>
+          <rect x="62" y="55" width="12" height="39" rx="3" fill="#58cbff"/>
+          <rect x="78" y="44" width="12" height="50" rx="3" fill="#23b4ff"/>
+          <g fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="44" cy="35" r="11"/>
+            <circle cx="60" cy="30" r="13"/>
+            <circle cx="76" cy="35" r="11"/>
+            <path d="M33 45h54"/>
+          </g>
+        </svg>
+      </div>
+      <div>
+        <div class="page-brand-name">Ella <span>Cloud</span></div>
+        <div class="page-brand-sub">Putting People &amp; Technology Together</div>
+      </div>
+    </div>
     <div class="page-badge">Equipment Sales & Service</div>
     <h1 class="page-title">World Class <span>Technology</span><br/>Equipment</h1>
     <p class="page-desc">We source and supply a broad range of high quality branded technology equipment — from laptops and servers to networking hardware and peripherals. Authorised resellers with full warranty support.</p>
@@ -489,7 +598,7 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <a href="index.html" class="logo">
-        <div class="logo-icon">EC</div>
+        <div class="logo-icon" aria-hidden="true"></div>
         <div>
           <div class="logo-text">Ella <span>Cloud</span></div>
           <div class="logo-sub">Putting People & Technology Together</div>
