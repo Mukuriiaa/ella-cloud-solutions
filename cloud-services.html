@@ -78,6 +78,22 @@
       box-shadow: -8px 0 0 #fff, 8px 0 0 #fff;
     }
 
+    .logo-icon-current {
+      display: grid;
+      place-items: center;
+    }
+
+    .logo-icon-current::before,
+    .logo-icon-current::after {
+      content: none;
+    }
+
+    .logo-symbol {
+      width: 78%;
+      height: 78%;
+      display: block;
+    }
+
     .logo-text { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1rem; line-height: 1.2; }
     .logo-text span { color: var(--cyan); }
     .logo-sub { font-size: 0.65rem; color: var(--muted); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
@@ -116,10 +132,11 @@
     }
     .page-hero-content { position: relative; z-index: 1; max-width: 700px; }
     .page-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
+      display: block;
+      width: fit-content;
       background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.25);
       border-radius: 100px; padding: 0.4rem 1rem;
-      font-size: 0.8rem; color: var(--cyan); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1.5rem;
+      font-size: 0.8rem; color: var(--cyan); letter-spacing: 0.05em; text-transform: uppercase; margin: 0.25rem 0 1.15rem 0;
     }
     .page-title {
       font-family: 'Poppins', sans-serif;
@@ -278,6 +295,7 @@
     footer { background: var(--deep); border-top: 1px solid var(--border); padding: 4rem 6% 2rem; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
     .footer-brand p { color: var(--muted); font-size: 0.875rem; line-height: 1.7; margin-top: 1rem; max-width: 280px; }
+    .footer-brand .logo-icon { width: 62px; height: 62px; border-radius: 12px; box-shadow: 0 12px 26px rgba(10,110,245,0.22); }
     .footer-col h4 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 1.2rem; }
     .footer-col a { display: block; color: var(--muted); text-decoration: none; font-size: 0.875rem; margin-bottom: 0.6rem; transition: color 0.2s; }
     .footer-col a:hover { color: var(--cyan); }
@@ -301,6 +319,7 @@
       .page-brand-lockup { gap: 0.75rem; }
       .page-brand-mark { width: 66px; height: 66px; border-radius: 13px; }
       .page-brand-sub { font-size: 0.66rem; }
+      .page-badge { margin-left: 0; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
     }
@@ -501,10 +520,23 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <a href="index.html" class="logo">
-        <div class="logo-icon" aria-hidden="true"></div>
+        <div class="logo-icon logo-icon-current" aria-hidden="true">
+          <svg class="logo-symbol" viewBox="0 0 120 120" role="presentation">
+            <rect x="30" y="76" width="12" height="18" rx="3" fill="#bfefff"/>
+            <rect x="46" y="66" width="12" height="28" rx="3" fill="#8edfff"/>
+            <rect x="62" y="55" width="12" height="39" rx="3" fill="#58cbff"/>
+            <rect x="78" y="44" width="12" height="50" rx="3" fill="#23b4ff"/>
+            <g fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="44" cy="35" r="11"/>
+              <circle cx="60" cy="30" r="13"/>
+              <circle cx="76" cy="35" r="11"/>
+              <path d="M33 45h54"/>
+            </g>
+          </svg>
+        </div>
         <div>
           <div class="logo-text">Ella <span>Cloud</span></div>
-          <div class="logo-sub">Putting People & Technology Together</div>
+          <div class="logo-sub">Solutions Limited</div>
         </div>
       </a>
       <p>Ella Cloud Solutions Limited is a cutting edge ICT consulting firm putting people and technology together across Kenya and beyond.</p>
