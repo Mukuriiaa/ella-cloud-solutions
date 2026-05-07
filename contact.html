@@ -545,7 +545,10 @@
     const submitBtn = document.getElementById('submitBtn');
 
     if (!firstName || !email || !message) {
-      alert('Please fill in your name, email and message before submitting.');
+      successMsg.textContent = 'Please fill in your name, email and message before submitting.';
+      successMsg.style.display = 'block';
+      successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => { successMsg.style.display = 'none'; }, 4000);
       return;
     }
 
@@ -577,7 +580,6 @@
       successMsg.textContent = "Thank you! Your message has been sent. We'll be in touch soon.";
       successMsg.style.display = 'block';
       successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      alert("Thank you! Your message has been sent.");
 
       document.getElementById('firstName').value = '';
       document.getElementById('lastName').value = '';
@@ -591,7 +593,6 @@
       successMsg.textContent = `Unable to send message right now: ${error.message}`;
       successMsg.style.display = 'block';
       successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      alert(`Unable to send message right now: ${error.message}`);
       setTimeout(() => { successMsg.style.display = 'none'; }, 7000);
     } finally {
       submitBtn.disabled = false;
