@@ -571,10 +571,11 @@
         })
       });
 
-      const result = await response.json();
+      const responseText = await response.text();
+      const result = responseText ? JSON.parse(responseText) : {};
 
       if (!response.ok || !result.ok) {
-        throw new Error(result.error || 'Failed to submit your message.');
+        throw new Error(result.error || response.statusText || 'Failed to submit your message.');
       }
 
       successMsg.textContent = "Thank you! Your message has been sent. We'll be in touch soon.";
