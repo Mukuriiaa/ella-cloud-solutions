@@ -556,40 +556,60 @@
     submitBtn.textContent = 'Sending...';
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          email,
-          phone,
-          service,
-          message
-        })
-      });
+      const apiEndpoints = [];
 
-      const responseText = await response.text();
-      const result = responseText ? JSON.parse(responseText) : {};
-
-      if (!response.ok || !result.ok) {
-        throw new Error(result.error || response.statusText || 'Failed to submit your message.');
+      if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+        apiEndpoints.push(new URL('/api/contact', window.location.href).toString());
       }
 
-      successMsg.textContent = "Thank you! Your message has been sent. We'll be in touch soon.";
-      successMsg.style.display = 'block';
-      successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      apiEndpoints.push('http://localhost:3000/api/contact');
 
-      document.getElementById('firstName').value = '';
-      document.getElementById('lastName').value = '';
-      document.getElementById('email').value = '';
-      document.getElementById('phone').value = '';
-      document.getElementById('service').value = '';
-      document.getElementById('message').value = '';
+      let lastError = null;
 
-      setTimeout(() => { successMsg.style.display = 'none'; }, 5000);
+      for (const endpoint of apiEndpoints) {
+        try {
+          const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              firstName,
+              lastName,
+              email,
+              phone,
+              service,
+              message
+            })
+          });
+
+          const responseText = await response.text();
+          const result = responseText ? JSON.parse(responseText) : {};
+
+          if (response.ok && result.ok) {
+            successMsg.textContent = "Thank you! Your message has been sent. We'll be in touch soon.";
+            successMsg.style.display = 'block';
+            successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            document.getElementById('firstName').value = '';
+            document.getElementById('lastName').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('service').value = '';
+            document.getElementById('message').value = '';
+
+            setTimeout(() => { successMsg.style.display = 'none'; }, 5000);
+            return;
+          }
+
+          lastError = new Error(result.error || response.statusText || 'Failed to submit your message.');
+        } catch (endpointError) {
+          lastError = endpointError;
+        }
+      }
+
+      throw lastError || new Error('Failed to submit your message.');
+
     } catch (error) {
       successMsg.textContent = `Unable to send message right now: ${error.message}`;
       successMsg.style.display = 'block';
