@@ -981,15 +981,15 @@
 
     <div class="hero-stats">
       <div>
-        <div class="stat-num" data-target="200">0<span>+</span></div>
+        <div class="stat-num">200<span>+</span></div>
         <div class="stat-label">Clients Served</div>
       </div>
       <div>
-        <div class="stat-num" data-target="99.9">0.0<span>%</span></div>
+        <div class="stat-num">99<span>.9%</span></div>
         <div class="stat-label">Uptime Guarantee</div>
       </div>
       <div>
-        <div class="stat-num" data-target="35">0<span>+</span></div>
+        <div class="stat-num">35<span>+</span></div>
         <div class="stat-label">Years Experience</div>
       </div>
     </div>
@@ -1232,60 +1232,6 @@
     hamburger.addEventListener('click', () => {
       navLinks.classList.toggle('open');
     });
-  }
-
-  const statNumbers = document.querySelectorAll('.stat-num[data-target]');
-  let hasAnimatedStats = false;
-
-  function animateStats() {
-    if (hasAnimatedStats) return;
-    hasAnimatedStats = true;
-
-    statNumbers.forEach((statNumber, index) => {
-      const target = parseFloat(statNumber.dataset.target);
-      const isDecimal = statNumber.dataset.target.includes('.');
-      const suffix = statNumber.querySelector('span')?.textContent || '';
-      const duration = 2800;
-      const delay = index * 400;
-      const start = performance.now();
-
-      function updateStat(currentTime) {
-        if (currentTime - start < delay) {
-          requestAnimationFrame(updateStat);
-          return;
-        }
-
-        const progress = Math.min((currentTime - start - delay) / duration, 1);
-        const value = target * progress;
-        statNumber.childNodes[0].nodeValue = isDecimal ? value.toFixed(1) : Math.floor(value);
-
-        if (progress < 1) {
-          requestAnimationFrame(updateStat);
-        } else {
-          statNumber.childNodes[0].nodeValue = isDecimal ? target.toFixed(1) : target;
-          const suffixNode = statNumber.querySelector('span');
-          if (suffixNode) suffixNode.textContent = suffix;
-        }
-      }
-
-      requestAnimationFrame(updateStat);
-    });
-  }
-
-  const statsSection = document.querySelector('.hero-stats');
-  if (statsSection && 'IntersectionObserver' in window) {
-    const statsObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateStats();
-          statsObserver.disconnect();
-        }
-      });
-    }, { threshold: 0.75, rootMargin: '0px 0px -10% 0px' });
-
-    statsObserver.observe(statsSection);
-  } else if (statsSection) {
-    animateStats();
   }
 </script>
 
