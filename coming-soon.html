@@ -257,9 +257,9 @@
   <div class="page-hero-bg"></div>
   <div class="page-hero-grid"></div>
   <div class="page-hero-content">
-    <div class="page-badge">Coming Soon</div>
-    <h1 class="page-title">This Page is <span>Coming Soon</span></h1>
-    <p class="page-desc">We're working hard to bring you something amazing. Check back soon!</p>
+    <div class="page-badge" id="sectionBadge">Coming Soon</div>
+    <h1 class="page-title" id="sectionTitle">This Page is <span>Coming Soon</span></h1>
+    <p class="page-desc" id="sectionDesc">We're working hard to bring you something amazing. Check back soon!</p>
   </div>
 </div>
 
@@ -270,8 +270,8 @@
     <i data-lucide="construction" style="width:80px;height:80px;color:rgba(0,212,255,0.3);"></i>
   </div>
 
-  <h2 class="coming-soon-title">Under Construction</h2>
-  <p class="coming-soon-desc">We're crafting something special for you. Stay tuned for updates!</p>
+  <h2 class="coming-soon-title" id="constructionTitle">Under Construction</h2>
+  <p class="coming-soon-desc" id="constructionDesc">We're crafting something special for you. Stay tuned for updates! This same template will be used for Careers, Testimonials, Legal, Deployment and Analytics pages until their final content is ready.</p>
   <a href="contact.html" class="coming-soon-cta">Notify Me</a>
 </div>
 
@@ -299,8 +299,8 @@
     <div class="footer-col">
       <h4>Company</h4>
       <a href="about.html">About Us</a>
-      <a href="coming-soon.html">Careers</a>
-      <a href="coming-soon.html">Blog</a>
+      <a href="coming-soon.html?section=Careers">Careers</a>
+      <a href="coming-soon.html?section=Blog">Blog</a>
       <a href="contact.html">Contact</a>
     </div>
 
@@ -324,6 +324,29 @@
 
 <script>
   lucide.createIcons();
+  const params = new URLSearchParams(window.location.search);
+  const section = params.get('section')?.trim();
+
+  if (section) {
+    const titleText = `${section} Coming Soon`;
+    const subtitleText = `The ${section.toLowerCase()} page is being prepared and will be available soon.`;
+
+    const sectionBadge = document.getElementById('sectionBadge');
+    const sectionTitle = document.getElementById('sectionTitle');
+    const sectionDesc = document.getElementById('sectionDesc');
+    const constructionTitle = document.getElementById('constructionTitle');
+    const constructionDesc = document.getElementById('constructionDesc');
+
+    if (sectionBadge) sectionBadge.textContent = `${section} Coming Soon`;
+    if (sectionTitle) sectionTitle.innerHTML = `${section} is <span>Coming Soon</span>`;
+    if (sectionDesc) sectionDesc.textContent = subtitleText;
+    if (constructionTitle) constructionTitle.textContent = `${section} Under Construction`;
+    if (constructionDesc) {
+      constructionDesc.textContent = `${subtitleText} This same template will be used for Careers, Testimonials, Legal, Deployment and Analytics pages until their final content is ready.`;
+    }
+    document.title = `${titleText} - Ella Cloud Solutions Limited`;
+  }
+
   const hamburger = document.querySelector('.hamburger');
   const navLinks = document.querySelector('.nav-links');
   if (hamburger && navLinks) {
