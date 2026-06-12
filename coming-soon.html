@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Coming Soon - Ella Cloud Solutions Limited</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --navy: #f5f7fb;
+      --deep: #eaf0f8;
+      --blue: #0a6ef5;
+      --cyan: #00d4ff;
+      --light: #e8f0fe;
+      --muted: #5f6f86;
+      --white: #0f172a;
+      --card: rgba(255,255,255,0.88);
+      --border: rgba(10,110,245,0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
+
+    /* TYPOGRAPHY */
+    h1, h2, h3, h4,
+    .logo-text,
+    .page-title,
+    .page-brand-name,
+    .page-brand-sub,
+    .footer-col h4 {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.2rem 6%;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+
+    .logo-icon {
+      width: 42px; height: 42px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800; font-size: 1.1rem; color: transparent; font-size: 0; position: relative; overflow: hidden;
+    }
+
+    .logo-icon img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+    }
+
+    .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--muted); font-size: 0.875rem; font-weight: 500;
+      padding: 0.5rem 0.9rem; border-radius: 6px; transition: all 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue); background: rgba(10,110,245,0.08); }
+    .nav-links a.active { color: var(--cyan); }
+    .nav-cta { background: linear-gradient(135deg, var(--blue), var(--cyan)); color: #fff !important; padding: 0.55rem 1.2rem !important; border-radius: 8px !important; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      position: absolute;
+      right: 6%;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 101;
+    }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: 0.3s; }
+
+    /* PAGE HERO */
+    .page-hero { padding: 10rem 6% 5rem; position: relative; overflow: hidden; }
+    .page-hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(10,110,245,0.15) 0%, transparent 60%), var(--navy);
+    }
+    .page-hero-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+    }
+
+    .page-hero-content { position: relative; z-index: 1; max-width: 700px; text-align: center; margin: 0 auto; }
+
+    .page-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(0,212,255,0.1);
+      border: 1px solid rgba(0,212,255,0.25);
+      border-radius: 100px;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem; color: var(--cyan);
+      letter-spacing: 0.05em; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .page-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800; line-height: 1.05;
+      letter-spacing: -0.02em; margin-bottom: 1.25rem;
+    }
+
+    .page-title span {
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    .page-desc { font-size: 1.05rem; line-height: 1.7; color: var(--muted); max-width: 560px; }
+
+    /* COMING SOON SECTION */
+    .coming-soon-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      padding: 4rem 6%;
+      text-align: center;
+    }
+
+    .coming-soon-image {
+      max-width: 100%;
+      height: auto;
+      max-height: 300px;
+      margin-bottom: 2rem;
+      border-radius: 12px;
+    }
+
+    .coming-soon-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    .coming-soon-desc {
+      font-size: 1.1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+
+    .coming-soon-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: #fff;
+      padding: 0.9rem 2rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 0 30px rgba(10,110,245,0.35);
+    }
+
+    .coming-soon-cta:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(10,110,245,0.5); }
+
+    /* FOOTER */
+    footer {
+      background: var(--deep); border-top: 1px solid var(--border);
+      padding: 4rem 6% 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem; margin-bottom: 3rem;
+    }
+
+    .footer-brand p { color: var(--muted); font-size: 0.875rem; line-height: 1.7; margin-top: 1rem; max-width: 280px; }
+    .footer-col h4 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 1.2rem; }
+    .footer-col a { display: block; color: var(--muted); text-decoration: none; font-size: 0.875rem; margin-bottom: 0.6rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--cyan); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.8rem; color: var(--muted); flex-wrap: wrap; gap: 1rem;
+    }
+
+    .social-links { display: flex; gap: 0.75rem; }
+    .social-links a {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); text-decoration: none; font-size: 0.85rem; transition: all 0.2s;
+    }
+    .social-links a:hover { background: rgba(0,212,255,0.1); color: var(--cyan); border-color: rgba(0,212,255,0.3); }
+
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 70px; left: 0; right: 0;
+      background: rgba(255,255,255,0.98);
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+      padding: 1.5rem 6%;
+      border-bottom: 1px solid var(--border);
+      gap: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="index.html" class="logo" aria-label="Ella Cloud Solutions">
+    <div class="logo-icon" aria-hidden="true">
+      <img src="logo.png" alt="Ella Cloud Solutions Logo" style="height: 44px; width: auto;"/>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="it-support.html">IT Support</a></li>
+    <li><a href="cloud-services.html">Cloud Services</a></li>
+    <li><a href="equipment.html">Equipment</a></li>
+    <li><a href="contact.html" class="nav-cta">Get in Touch</a></li>
+  </ul>
+
+  <div class="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="page-badge">Coming Soon</div>
+    <h1 class="page-title">This Page is <span>Coming Soon</span></h1>
+    <p class="page-desc">We're working hard to bring you something amazing. Check back soon!</p>
+  </div>
+</div>
+
+<!-- COMING SOON CONTAINER -->
+<div class="coming-soon-container">
+  <!-- Image placeholder - will be replaced with Isaac's under construction image -->
+  <div style="width:100%;max-width:400px;height:250px;background:linear-gradient(135deg, rgba(10,110,245,0.1), rgba(0,212,255,0.05));border:2px dashed rgba(0,212,255,0.3);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:2rem;">
+    <i data-lucide="construction" style="width:80px;height:80px;color:rgba(0,212,255,0.3);"></i>
+  </div>
+
+  <h2 class="coming-soon-title">Under Construction</h2>
+  <p class="coming-soon-desc">We're crafting something special for you. Stay tuned for updates!</p>
+  <a href="contact.html" class="coming-soon-cta">Notify Me</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <div class="logo-icon" aria-hidden="true">
+          <img src="logo.png" alt="Ella Cloud Solutions Logo" style="height: 36px; width: auto;"/>
+        </div>
+      </a>
+      <p>Ella Cloud Solutions Limited is a cutting edge ICT consulting firm putting people and technology together across Kenya and beyond.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="it-support.html">IT Support</a>
+      <a href="cloud-services.html">Cloud Services</a>
+      <a href="equipment.html">Equipment Sales</a>
+      <a href="it-support.html">Cybersecurity</a>
+      <a href="it-support.html">Managed IT</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="coming-soon.html">Careers</a>
+      <a href="coming-soon.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="contact.html">Nairobi, Kenya</a>
+      <a href="contact.html#contact-info">info@ellacloud.co.ke</a>
+      <a href="contact.html#contact-info">+254 700 000 000</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Ella Cloud Solutions Limited. All rights reserved.</span>
+    <div class="social-links">
+      <a href="#" title="LinkedIn">in</a>
+      <a href="#" title="Twitter">𝕏</a>
+      <a href="#" title="Facebook">f</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+  }
+</script>
+
+</body>
+</html>
