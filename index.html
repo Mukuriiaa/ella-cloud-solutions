@@ -56,7 +56,7 @@
     /* ── NAVBAR ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: center;
+      display: flex; align-items: center; justify-content: space-between;
       padding: 1.2rem 6%;
       background: rgba(255,255,255,0.92);
       backdrop-filter: blur(16px);
@@ -83,74 +83,89 @@
     }
 
     .logo-icon-splash {
-      --logo-size: 230px;
-      margin: 2rem auto 0.8rem;
+      --logo-size: 140px;
       animation: fadeUp 0.6s 0.08s ease both;
     }
 
+    /* ── BRAND SPLASH WITH VIDEO BACKGROUND ── */
     .brand-splash {
       min-height: 100vh;
       padding: 7.7rem 6% 3.5rem;
       width: 100%;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: flex-start;
+      justify-content: flex-start;
       position: relative;
       overflow: hidden;
     }
 
+    /* Video background */
+    .splash-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    /* Remove the gradient backgrounds so video shows through */
     .brand-splash::before {
+      content: none;
+    }
+
+    /* Add a subtle dark overlay to make text readable (optional - adjust opacity as needed) */
+    .brand-splash::after {
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(0,212,255,0.2), transparent 42%),
-        radial-gradient(circle at 76% 72%, rgba(10,110,245,0.18), transparent 50%),
-        linear-gradient(180deg, #f8fbff, #eff5ff);
+      background: rgba(0, 0, 0, 0.3);
       z-index: 0;
+      pointer-events: none;
     }
 
     .brand-splash-inner {
       position: relative;
       z-index: 1;
-      text-align: center;
+      text-align: left;
       max-width: 860px;
       animation: fadeUp 0.55s ease both;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
-    .brand-splash-name {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 800;
-      font-size: clamp(2.1rem, 6vw, 4rem);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      color: #0f172a;
-      margin-bottom: 0.75rem;
-    }
-
-    .brand-splash-name span { color: var(--blue); }
-
+    /* Make text white so it pops against video background */
     .brand-splash-tag {
       font-size: clamp(0.85rem, 1.4vw, 1.05rem);
-      color: #1a2e4a;
+      color: #ffffff;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       margin-bottom: 1.2rem;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
     }
 
     .scroll-cue {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      color: var(--blue);
+      color: #ffffff;
       text-decoration: none;
       font-weight: 600;
       font-size: 0.95rem;
       padding: 0.65rem 1.1rem;
       border-radius: 999px;
-      background: rgba(10,110,245,0.08);
-      border: 1px solid rgba(10,110,245,0.2);
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(4px);
+      transition: all 0.3s ease;
+    }
+
+    .scroll-cue:hover {
+      background: rgba(0,0,0,0.6);
+      border-color: rgba(255,255,255,0.5);
     }
 
     .nav-links {
@@ -167,10 +182,6 @@
       border-radius: 6px;
       transition: all 0.2s;
       letter-spacing: 0.02em;
-    }
-
-    .logo {
-      gap: 1rem;
     }
 
     .nav-links a:hover { color: var(--blue); background: rgba(10,110,245,0.08); }
@@ -891,7 +902,7 @@
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .brand-splash { min-height: 88vh; padding-top: 7rem; }
-      .logo-icon-splash { --logo-size: 170px; }
+      .logo-icon-splash { --logo-size: 110px; }
     }
 
     @media (max-width: 600px) {
@@ -899,7 +910,7 @@
       .cta-section { padding: 2.5rem; }
       .footer-grid { grid-template-columns: 1fr; }
       .logo-icon { --logo-size: 54px; }
-      .logo-icon-splash { --logo-size: 138px; }
+      .logo-icon-splash { --logo-size: 90px; }
       .brand-splash-tag { font-size: 0.76rem; }
     }
     
@@ -915,6 +926,7 @@
   gap: 0.5rem;
 }
 
+
   </style>
 </head>
 <body>
@@ -925,6 +937,7 @@
     <div class="logo-icon" aria-hidden="true">
       <img src="logo.png" alt="Ella Cloud Solutions" style="height: 44px; width: auto;"/>
     </div>
+    <span style="font-weight: 700; font-size: 1.1rem; color: #0f172a;">Ella Cloud Solutions</span>
   </a>
   <ul class="nav-links">
     <li><a href="index.html" class="active">Home</a></li>
@@ -940,11 +953,18 @@
   </div>
 </nav>
 
-<!-- BRAND SPLASH -->
+<!-- BRAND SPLASH WITH VIDEO BACKGROUND -->
 <section class="brand-splash" aria-label="Brand introduction">
+  <!-- VIDEO BACKGROUND - Uncomment and add your video file when approved by Isaac -->
+  <!-- 
+  <video class="splash-video" autoplay muted loop playsinline>
+    <source src="your-video-file.mp4" type="video/mp4">
+  </video>
+  -->
+  
   <div class="brand-splash-inner">
     <div class="logo-icon logo-icon-splash" aria-hidden="true">
-      <img src="logo.png" alt="Ella Cloud Solutions Logo" style="height: 310px; width: auto; display: block; margin: 0 auto 0rem;"/>
+      <img src="logo.png" alt="Ella Cloud Solutions Logo" style="height: 140px; width: auto; display: block;"/>
     </div>
     <div class="brand-splash-tag">Putting People &amp; Technology Together</div>
     <a href="#main-hero" class="scroll-cue">Scroll to explore ↓</a>
