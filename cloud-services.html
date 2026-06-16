@@ -175,6 +175,43 @@
     .service-icon { width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.25rem; }
     .service-name { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.6rem; }
     .service-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+
+    /* MICROSOFT CSP BANNER */
+    .csp-banner {
+      background: linear-gradient(135deg, rgba(10,110,245,0.08), rgba(0,212,255,0.05));
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 20px;
+      padding: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+    .csp-banner-icon {
+      width: 64px; height: 64px; flex-shrink: 0;
+      border-radius: 14px;
+      background: rgba(10,110,245,0.12);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .csp-banner-icon [data-lucide] { width: 32px; height: 32px; stroke: var(--blue); stroke-width: 1.5; }
+    .csp-banner-text { flex: 1; min-width: 240px; }
+    .csp-banner-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      margin-bottom: 0.4rem;
+    }
+    .csp-banner-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+    .csp-badge-pill {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(10,110,245,0.12);
+      border: 1px solid rgba(10,110,245,0.25);
+      border-radius: 100px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.78rem; font-weight: 600; color: var(--blue);
+      margin-top: 0.9rem;
+    }
  
     /* SATELLITE SECTION */
     .satellite-section { background: rgba(255,255,255,0.02); }
@@ -285,6 +322,7 @@
     @media (max-width: 600px) {
       .cta-section { padding: 2.5rem; }
       .footer-grid { grid-template-columns: 1fr; }
+      .csp-banner { padding: 1.75rem; }
     }
 
     .nav-links.open {
@@ -386,6 +424,16 @@
       <div class="service-icon" style="background:rgba(255,80,80,0.1);"><i data-lucide="shield-check"></i></div>
       <div class="service-name">Cloud Security</div>
       <p class="service-desc">Data security and integrity solutions for your cloud environment. We protect your business from threats with enterprise grade security tools.</p>
+    </div>
+  </div>
+
+  <!-- MICROSOFT CSP BANNER -->
+  <div class="csp-banner">
+    <div class="csp-banner-icon"><i data-lucide="badge-check"></i></div>
+    <div class="csp-banner-text">
+      <div class="csp-banner-title">Microsoft Certified Solutions Provider</div>
+      <p class="csp-banner-desc">As a Microsoft Certified Solutions Provider, we are officially authorised to license, deploy and support Microsoft 365, Azure, Dynamics 365 and Microsoft Teams for your business — backed by direct Microsoft partnership and certified technical expertise.</p>
+      <div class="csp-badge-pill"><i data-lucide="shield-check" style="width:14px;height:14px;"></i>Microsoft CSP Certified</div>
     </div>
   </div>
 </section>

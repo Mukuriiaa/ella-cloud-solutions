@@ -300,6 +300,21 @@
     }
  
     .brand-pill:hover { color: var(--cyan); border-color: rgba(0,212,255,0.35); background: rgba(0,212,255,0.06); }
+
+    .brand-pill.csp-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(10,110,245,0.1);
+      border-color: rgba(10,110,245,0.3);
+      color: var(--blue);
+    }
+
+    .brand-pill.csp-pill [data-lucide] {
+      width: 14px; height: 14px;
+      stroke: var(--blue);
+      stroke-width: 2;
+    }
  
     /* CLIENTS */
     .clients-grid {
@@ -605,6 +620,7 @@
   <p class="section-sub">We are authorised resellers for Microsoft, HP, Dell and Lenovo, and we also deliver Starlink Satellite Internet solutions — alongside many other world class brands.</p>
  
   <div class="brands-grid">
+    <div class="brand-pill csp-pill"><i data-lucide="badge-check"></i>Microsoft Certified Solutions Provider</div>
     <div class="brand-pill">Starlink</div>
     <div class="brand-pill">Microsoft</div>
     <div class="brand-pill">HP / Poly</div>

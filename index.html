@@ -115,7 +115,7 @@
       content: none;
     }
 
-    /* Add a subtle dark overlay to make text readable (optional - adjust opacity as needed) */
+    /* Add a subtle dark overlay to make text readable */
     .brand-splash::after {
       content: "";
       position: absolute;
@@ -955,7 +955,6 @@
 
 <!-- BRAND SPLASH WITH VIDEO BACKGROUND -->
 <section class="brand-splash" aria-label="Brand introduction">
-  <!-- VIDEO BACKGROUND - ACTIVATED with hero-video.mp4 -->
   <video class="splash-video" autoplay muted loop playsinline>
     <source src="hero-video.mp4" type="video/mp4">
   </video>
@@ -1064,7 +1063,7 @@
 
   <div class="services-grid">
     <div class="service-card">
-        <div class="service-icon" style="background:rgba(10,110,245,0.15);"><i data-lucide="wrench"></i></div>
+      <div class="service-icon" style="background:rgba(10,110,245,0.15);"><i data-lucide="wrench"></i></div>
       <div class="service-name">IT Support Solutions</div>
       <p class="service-desc">We provide comprehensive IT consultancy, system maintenance, remote monitoring and on-site troubleshooting to keep your business running without interruption.</p>
       <a href="it-support.html" class="service-link">Learn more →</a>
@@ -1075,6 +1074,14 @@
       <div class="service-name">Cloud Services</div>
       <p class="service-desc">We offer scalable cloud hosting, storage, backup and migration solutions helping businesses transition to the cloud securely and cost-effectively across Kenya and beyond.</p>
       <a href="cloud-services.html" class="service-link">Learn more →</a>
+    </div>
+
+    <!-- NEW: Microsoft CSP Partner Card -->
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(10,110,245,0.15);"><i data-lucide="award"></i></div>
+      <div class="service-name">Microsoft CSP Partner</div>
+      <p class="service-desc">Official Microsoft Certified Solutions Provider — offering Microsoft 365, Azure, Dynamics, software licensing and enterprise cloud deployments across Africa.</p>
+      <a href="cloud-services.html#microsoft-csp" class="service-link">Learn more →</a>
     </div>
 
     <div class="service-card">
