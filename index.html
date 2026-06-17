@@ -82,19 +82,40 @@
       filter: brightness(1.15);
     }
 
-    .logo-icon-splash {
-      --logo-size: 140px;
-      animation: fadeUp 0.6s 0.08s ease both;
+    .nav-brand-text { display: flex; flex-direction: column; }
+
+    .nav-brand-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: #0f172a;
+    }
+
+    .nav-brand-name span {
+      background: linear-gradient(135deg, #0a6ef5, #00d4ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .nav-brand-tag {
+      font-size: 0.6rem;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.1rem;
     }
 
     /* ── BRAND SPLASH WITH VIDEO BACKGROUND ── */
     .brand-splash {
       min-height: 100vh;
-      padding: 7.7rem 6% 3.5rem;
       width: 100%;
       display: flex;
-      align-items: flex-start;
-      justify-content: flex-start;
+      align-items: flex-end;
+      justify-content: center;
       position: relative;
       overflow: hidden;
     }
@@ -105,22 +126,17 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 112%;
+      height: 100%;
       object-fit: cover;
       z-index: 0;
     }
 
-    /* Remove the gradient backgrounds so video shows through */
-    .brand-splash::before {
-      content: none;
-    }
-
-    /* Add a subtle dark overlay to make text readable */
+    /* Add a subtle dark overlay so the scroll cue stays readable */
     .brand-splash::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.35);
+      background: linear-gradient(180deg, rgba(0,0,0,0) 85%, rgba(0,0,0,0.5) 100%);
       z-index: 0;
       pointer-events: none;
     }
@@ -128,23 +144,12 @@
     .brand-splash-inner {
       position: relative;
       z-index: 1;
-      text-align: left;
-      max-width: 860px;
+      text-align: center;
+      padding-bottom: 1.75rem;
       animation: fadeUp 0.55s ease both;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-    }
-
-    /* Make text white so it pops against video background */
-    .brand-splash-tag {
-      font-size: clamp(0.85rem, 1.4vw, 1.05rem);
-      color: #ffffff;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 1.2rem;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      align-items: center;
     }
 
     .scroll-cue {
@@ -901,8 +906,7 @@
       .footer-grid { grid-template-columns: 1fr 1fr; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      .brand-splash { min-height: 88vh; padding-top: 7rem; }
-      .logo-icon-splash { --logo-size: 110px; }
+      .nav-brand-tag { display: none; }
     }
 
     @media (max-width: 600px) {
@@ -910,8 +914,6 @@
       .cta-section { padding: 2.5rem; }
       .footer-grid { grid-template-columns: 1fr; }
       .logo-icon { --logo-size: 54px; }
-      .logo-icon-splash { --logo-size: 90px; }
-      .brand-splash-tag { font-size: 0.76rem; }
     }
     
   .nav-links.open {
@@ -937,7 +939,10 @@
     <div class="logo-icon" aria-hidden="true">
       <img src="logo-navbar.png" alt="Ella Cloud Solutions" style="height: 44px; width: auto;"/>
     </div>
-    <span style="font-weight: 700; font-size: 1.1rem; background: linear-gradient(135deg, #0a6ef5, #00d4ff); -webkit-background-clip: text; background-clip: text; color: transparent;">Ella Cloud Solutions</span>
+    <div class="nav-brand-text">
+      <div class="nav-brand-name">Ella <span>Cloud</span> Solutions</div>
+      <div class="nav-brand-tag">Putting People &amp; Technology Together</div>
+    </div>
   </a>
   <ul class="nav-links">
     <li><a href="index.html" class="active">Home</a></li>
@@ -958,12 +963,8 @@
   <video class="splash-video" autoplay muted loop playsinline>
     <source src="hero-video.mp4" type="video/mp4">
   </video>
-  
+
   <div class="brand-splash-inner">
-    <div class="logo-icon logo-icon-splash" aria-hidden="true">
-      <img src="logo-navbar.png" alt="Ella Cloud Solutions Logo" style="height: 140px; width: auto; display: block;"/>
-    </div>
-    <div class="brand-splash-tag">Putting People &amp; Technology Together</div>
     <a href="#main-hero" class="scroll-cue">Scroll to explore ↓</a>
   </div>
 </section>
