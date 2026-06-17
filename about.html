@@ -161,45 +161,6 @@
     }
  
     .page-desc { font-size: 1.05rem; line-height: 1.7; color: var(--muted); max-width: 560px; }
-
-    .page-brand-lockup {
-      display: flex;
-      align-items: center;
-      gap: 0.95rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .page-brand-mark {
-      width: 82px;
-      height: 82px;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-    }
-
-    .page-brand-symbol {
-      width: 78%;
-      height: 78%;
-      display: block;
-    }
-
-    .page-brand-name {
-      font-family: 'Poppins', sans-serif;
-      font-size: clamp(1.45rem, 2.6vw, 1.95rem);
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      line-height: 1.05;
-      margin-bottom: 0.25rem;
-    }
-
-    .page-brand-name span { color: var(--blue); }
-
-    .page-brand-sub {
-      font-size: 0.74rem;
-      letter-spacing: 0.11em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
  
     /* SECTIONS */
     section { padding: 6.5rem 6%; }
@@ -438,9 +399,6 @@
       .story-grid, .mv-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
       .nav-links { display: none; }
-      .page-brand-lockup { gap: 0.75rem; }
-      .page-brand-mark { width: 66px; height: 66px; border-radius: 13px; }
-      .page-brand-sub { font-size: 0.66rem; }
       .hamburger { display: flex; }
       .nav-brand-tag { display: none; }
     }
@@ -503,20 +461,11 @@
   </div>
 </nav>
  
-<!-- PAGE HERO -->
+<!-- PAGE HERO (Brand lockup removed) -->
 <div class="page-hero">
   <div class="page-hero-bg"></div>
   <div class="page-hero-grid"></div>
   <div class="page-hero-content">
-    <div class="page-brand-lockup" aria-label="Ella Cloud brand">
-      <div class="page-brand-mark" aria-hidden="true">
-        <img src="logo-navbar.png" alt="Ella Cloud Solutions Logo" style="height: 66px; width: auto;"/>
-      </div>
-      <div>
-        <div class="page-brand-name">Ella <span>Cloud</span></div>
-        <div class="page-brand-sub">Putting People &amp; Technology Together</div>
-      </div>
-    </div>
     <div class="page-badge">About Ella Cloud Solutions</div>
     <h1 class="page-title">Putting People &amp;<br/><span>Technology</span> Together</h1>
     <p class="page-desc">We are a cutting edge ICT consulting firm offering a broad range of technology services and products to businesses across Kenya and beyond.</p>
