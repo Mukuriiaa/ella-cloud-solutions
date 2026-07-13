@@ -2,8 +2,6 @@
 
 This project now includes a static multi-page website and a backend API for contact form submissions.
 
-For a short editing guide for authorized users, see [CMS-USER-MANUAL.md](CMS-USER-MANUAL.md).
-
 ## Stack
 
 - Frontend: Static HTML/CSS/JS
